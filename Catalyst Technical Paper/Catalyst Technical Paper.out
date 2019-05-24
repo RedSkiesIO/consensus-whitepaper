@@ -1,0 +1,40 @@
+\BOOKMARK [0][-]{chapter*.2}{Glossary}{}% 1
+\BOOKMARK [0][-]{chapter*.3}{Introduction}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Technical Specifications}{}% 3
+\BOOKMARK [1][-]{section.1.1}{Choice of Elliptic Curve}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.2}{Choice of Hashing Algorithm}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.3}{Zero-Knowledge Proofs}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.4}{Tokens}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Peer-to-peer Communication Protocol}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Peer Identification Protocol}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.2}{Peer Messaging}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.3}{Gossip Protocol}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.4}{Peer Role Types}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.5}{Nodes Registration and Worker Pass}{chapter.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Catalyst Distributed Ledger}{}% 14
+\BOOKMARK [1][-]{section.3.1}{Ledger Database Architecture}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.2}{Accounts on Catalyst}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.3}{Ledger Current State and DFS}{chapter.3}% 17
+\BOOKMARK [0][-]{chapter.4}{Transactions}{}% 18
+\BOOKMARK [1][-]{section.4.1}{Transaction Types}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.2}{Transaction Structure}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.3}{Transaction Entries}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.4}{Transaction Signature}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.5}{Transaction Validity}{chapter.4}% 23
+\BOOKMARK [0][-]{chapter.5}{Consensus Mechanism}{}% 24
+\BOOKMARK [1][-]{section.5.1}{Background}{chapter.5}% 25
+\BOOKMARK [2][-]{subsection.5.1.1}{Motivation}{section.5.1}% 26
+\BOOKMARK [2][-]{subsection.5.1.2}{Naming Convention}{section.5.1}% 27
+\BOOKMARK [1][-]{section.5.2}{Democratic Consensus}{chapter.5}% 28
+\BOOKMARK [2][-]{subsection.5.2.1}{Computation Phase}{section.5.2}% 29
+\BOOKMARK [2][-]{subsection.5.2.2}{Voting Phase}{section.5.2}% 30
+\BOOKMARK [2][-]{subsection.5.2.3}{Synchronisation Phase}{section.5.2}% 31
+\BOOKMARK [0][-]{chapter.6}{Catalyst at Large Scale}{}% 32
+\BOOKMARK [0][-]{chapter.7}{Benchmarking}{}% 33
+\BOOKMARK [0][-]{chapter.8}{Security}{}% 34
+\BOOKMARK [1][-]{section.8.1}{Security of the Consensus Mechanism I }{chapter.8}% 35
+\BOOKMARK [1][-]{section.8.2}{Security of the Consensus Mechanism II }{chapter.8}% 36
+\BOOKMARK [1][-]{section.8.3}{Security of the Signature Scheme}{chapter.8}% 37
+\BOOKMARK [2][-]{subsection.8.3.1}{Rogue Key Attack}{section.8.3}% 38
+\BOOKMARK [2][-]{subsection.8.3.2}{Quantum Attack}{section.8.3}% 39
+\BOOKMARK [0][-]{chapter*.14}{Conclusion}{}% 40

@@ -1,0 +1,19 @@
+Peers on the Catalyst network can participate in the network and assume a variety of roles. These include:
+
+\begin{itemize}
+
+\item \textbf{User node} - default state of all nodes on the network. The role of a user node is to receive transactions, check the transactions validity and when valid, forward these to their peers. User nodes can also generate transactions and observe the network. However, they are not entitled or required to perform any work on the network. 
+
+\item \textbf{Reservist node} - A node that has signalled  its intent to perform work for the network and provided proofs of its available computing resource dedicated to the network.
+
+\item \textbf{Worker node} - A node that has been granted a worker pass for a finite period of time. 
+
+\item \textbf{Producer node} - A worker node that has been selected to perform work for a particular ledger cycle . A producer node will be rewarded for performing good quality work by receiving tokens. 
+
+\item \textbf{Storage node} - A node able to sell some of its spare storage to allow other users to store there data in a decentralised manner. 
+
+\end{itemize}
+
+All nodes on the network will receive transactions, validate and forward these transactions to other peers that they are connected with. This is to allow efficient propagation of transactions across the network. \\
+
+Reservist nodes upon registering to perform work on the network are placed at the back of a node queue (or work queue) from which they must wait to be given a worker pass. This pass grants them to become a worker node and a member of the worker pool for a finite period of time. During this period of time several ledger cycles happen and the worker node has a chance of being randomly selected to become a producer for any ledger cycle. The producer nodes are the network peers that build the ledger state update, as described in \ref{se}. 
