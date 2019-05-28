@@ -1,0 +1,237 @@
+\documentclass[a4paper, 12pt]{book}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb} 
+\usepackage{centernot}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage[colorlinks]{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{titlesec}	
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{epstopdf}
+\usepackage{pdflscape}
+\usepackage[margin=0.8in]{caption}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{array,multirow,multicol}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{bulg}{rgb}{0.5, 0.0, 0.13}
+
+
+\captionsetup{font=scriptsize}
+
+
+\begin{document}
+
+\parindent=0in
+
+\title{Catalyst Distributed Operating System Protocol}
+\author{Dr. Pauline Bernat, Joseph Kearney and Francesca Sage-Ling}
+\maketitle 
+
+\tableofcontents
+
+
+%GLOSSARY
+
+\chapter*{Glossary} \label{Cha:Glo}
+\addcontentsline{toc}{chapter}{Glossary}
+
+\input{paper-tex-files/glossary/glossary}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%INTRODUCTION
+
+\chapter*{Introduction} \label{Cha:Int}
+\addcontentsline{toc}{chapter}{Introduction}
+ 
+\input{paper-tex-files/introduction/introduction}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\chapter{Technical Specifications} \label{Cha:Tec}
+
+\input{paper-tex-files/technical-specification/technical-specification}
+
+\section{Choice of Elliptic Curve}\label{Sec:EC}
+
+\input{paper-tex-files/technical-specification/elliptic-curve/elliptic-curve}
+
+\section{Choice of Hashing Algorithm}\label{Sec:Has}
+
+\input{paper-tex-files/technical-specification/hashing-algorithm/hashing-algorithm}
+
+\section{Zero-Knowledge Proofs}\label{Sec:ZKP}
+
+\input{paper-tex-files/technical-specification/zk-proofs/zk-proofs}
+
+\section{Tokens}\label{Sec:Tok}
+
+\input{paper-tex-files/technical-specification/tokens/tokens}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Network Access Chapter
+
+
+\chapter{Peer-to-peer Communication Protocol} \label{Cha:NAPI}
+
+\input{paper-tex-files/catalyst-network/catalyst-network}
+
+\section{Peer Identification Protocol}\label{Sec:PIP}
+
+\input{paper-tex-files/catalyst-network/peer-identification/peer-identification}
+
+\section{Peer Messaging}
+
+\input{paper-tex-files/catalyst-network/peer-messaging/peer-messaging}
+
+\section{Gossip Protocol}
+
+\input{paper-tex-files/catalyst-network/gossip-protocol/gossip-protocol}
+
+\section{Peer Role Types}\label{Sec:PRT}
+\input{paper-tex-files/catalyst-network/node-roles/node-roles}
+
+\section{Nodes Registration and Worker Pass}\label{Sec:Reg}
+
+\input{paper-tex-files/catalyst-network/node-role-assignment/node-role-assignment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Catalyst Distributed Ledger} \label{Cha:LDA}
+\input{paper-tex-files/catalyst-distributed-ledger/catalyst-distributed-ledger}
+
+\section{Ledger Database Architecture} \label{Sec:LDA}
+
+\input{paper-tex-files/catalyst-distributed-ledger/ledger-database-architecture/ledger-database-architecture}
+
+\section{Accounts on Catalyst} \label{Sec:AoC}
+
+\input{paper-tex-files/catalyst-distributed-ledger/accounts-catalyst/accounts-catalyst}
+
+\section{Ledger Current State and DFS}\label{Sec:DFS}
+
+\input{paper-tex-files/catalyst-distributed-ledger/ledger-current-state-dfs/ledger-current-state-dfs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Transactions} \label{Cha:Tra}
+
+\input{paper-tex-files/transactions/transactions}
+
+
+\section{Transaction Types} \label{Sec:Typ}
+
+\input{paper-tex-files/transactions/types/types}
+
+\section{Transaction Structure} \label{Sec:TStru}
+
+\input{paper-tex-files/transactions/structure/structure}
+
+
+\section{Transaction Entries}\label{Sec:TEnt}
+
+\input{paper-tex-files/transactions/entries/entries}
+
+\section{Transaction Signature}\label{Sec:Sig}
+
+\input{paper-tex-files/transactions/signature/signature}
+
+
+\section{Transaction Validity} \label{Sec:Val}
+
+\input{paper-tex-files/transactions/validity/validity}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Consensus Mechanism} \label{Cha:CM}
+
+
+\input{paper-tex-files/consensus-mechanism/consensus-mechanism}
+
+
+\section{Background}\label{Sec:Cbg}
+
+\input{paper-tex-files/consensus-mechanism/background/background}
+
+\section{Democratic Consensus}\label{Sec:Dem}
+
+\input{paper-tex-files/consensus-mechanism/protocol/protocol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Catalyst at Large Scale} \label{Cha:Sha}
+
+\input{paper-tex-files/sharding/sharding}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Benchmarking} \label{Cha:Ben}
+
+\input{paper-tex-files/benchmarking/benchmarking}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Security} \label{Cha:Sec}
+
+\input{paper-tex-files/security/security}
+
+
+\section{Security of the Consensus Mechanism I }\label{Sec:ConSec}
+
+\input{paper-tex-files/security/consensus-mechanism-i/consensus-mechanism-i}
+
+\section{Security of the Consensus Mechanism II }\label{Sec:SecLsu}
+
+\input{paper-tex-files/security/consensus-mechanism-ii/consensus-mechanism-ii}
+
+
+\section{Security of the Signature Scheme}\label{Sec:SSS}
+
+\input{paper-tex-files/security/signature-scheme/signature-scheme}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Conclusion} \label{Cha:Con}
+\addcontentsline{toc}{chapter}{Conclusion}
+
+\input{paper-tex-files/conclusion/conclusion}
+
+
+
+
+
+%NEEDS UPDATING AND REORDERING
+\begin{thebibliography} {unsrt}
+\bibitem{BFT} \url{https://medium.com/loom-network/understanding-blockchain-fundamentals-part-1\\-byzantine-fault-tolerance-245f46fe8419}
+\bibitem{bc24} \url{https://www.blockchain.com/pools?timespan=24hours} 
+\bibitem{pool_cent} \url{https://www.buybitcoinworldwide.com/mining/pools}
+\bibitem{PoSr} \url{https://cointelegraph.com/news/the-inevitable-failure-of-proof-of-stake-\\blockchains-and-why-a-new-algorithm-is-needed}
+\bibitem{schnorr} Greg Maxwell, Andrew Poelstra, Yannick Seurin and Peter Wuille {\em Simple Schnorr Multi-Signatures with Applications to Bitcoin} 20 May 2018 Last Accessed 08/02/19: \url{https://pdfs.semanticscholar.org/a4da/14a4329d7bf28e2ecbf9a3e42bf1faba523e.pdf?_ga=2.193608301.1119480105.1549621665-1692475185.1549621665} 
+\bibitem{agarwal} Aggarwal, D., 2018. Quantum attacks on Bitcoin, and how to protect against them. Quantum Physics (quant-ph)
+\bibitem{pollard} Koundinya, A., 2013. Performance Analysis of Parallel Pollard's Rho Factoring Algorithm. International Journal of Computer Science \& Information Technology (IJCSIT)
+\bibitem{musig} Maxwell, G., 2018. Simple Schnorr Multi-Signatures with Applications to Bitcoin: \url{https://eprint.iacr.org/2018/068}
+\bibitem{confidential} Greg Maxwell {\em Confidential Transactions} 9 June 2015 Last Accessed 08/02/19: \url{https://people.xiph.org/~greg/confidential_values.txt}
+\bibitem{bulletproof} Benedikt Bunz, Jonathan Bootle, Dan Boneh, Andrew Poelstra, Pieter Wuille and Greg Maxwel {\em Bulletproofs:  Short Proofs for Confidential Transactions and More} 01 Nov 2017 Last Accessed 25/02/19: \url{https://eprint.iacr.org/2017/1066.pdf}
+\bibitem{monero} monero-project {\em Monero: the secure, private, untraceable cryptocurrency} Last Accessed 25/02/2019 \url{https://github.com/monero-project/monero/tree/bc208be63d880871f4f1d6b51a7b35abd5e9b8f0}
+\bibitem{NSA} Daniel J Bernstein and Tanja Lange  {\em Failures in NIST's ECC standards}: \url{https://cr.yp.to/newelliptic/nistecc-20160106.pdf}
+\bibitem{ed25519} Daniel J Bernstein {\em Ed25519: high-speed high-security signatures} 22 November 2017 Last Accessed 18/02/19: \url{https://ed25519.cr.yp.to/}
+\bibitem{blake} \url{https://coinguides.org/blake2b/}
+\bibitem{electric} \url{https://digiconomist.net/ethereum-energy-consumption}
+\bibitem{swis} Gehring, B., 2018. Swiss Payment Monitor 2018. \url{swisspaymentmonitor.ch}, p18.
+\bibitem{EthTxpD} \url{https://etherscan.io/chart} 21/05/2019
+\bibitem{BitTxpD} \url{https://www.blockchain.com/en/charts} 21/05/2019
+\bibitem{kearney} Joseph J. Kearney and Carlos A. P\'erez-Delgado, 2019. Blockchain Technologies Vulnerability to Quantum Attacks
+
+\end{thebibliography}
+
+
+\end{document}
