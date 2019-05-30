@@ -20,10 +20,11 @@
 \usepackage{array,multirow,multicol}
 \usepackage[dvipsnames]{xcolor}
 \definecolor{bulg}{rgb}{0.5, 0.0, 0.13}
-
-
 \captionsetup{font=scriptsize}
-
+\usepackage{url}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
 
 \begin{document}
 
@@ -211,25 +212,25 @@
 
 %NEEDS UPDATING AND REORDERING
 \begin{thebibliography} {unsrt}
-\bibitem{BFT} \url{https://medium.com/loom-network/understanding-blockchain-fundamentals-part-1\\-byzantine-fault-tolerance-245f46fe8419}
+\bibitem{BFT} G. Konstantopoulos, 2017. \url{https://medium.com/loom-network/understanding-blockchain-fundamentals-part-1-byzantine-fault-tolerance-245f46fe8419}
 \bibitem{bc24} \url{https://www.blockchain.com/pools?timespan=24hours} 
 \bibitem{pool_cent} \url{https://www.buybitcoinworldwide.com/mining/pools}
-\bibitem{PoSr} \url{https://cointelegraph.com/news/the-inevitable-failure-of-proof-of-stake-\\blockchains-and-why-a-new-algorithm-is-needed}
-\bibitem{schnorr} Greg Maxwell, Andrew Poelstra, Yannick Seurin and Peter Wuille {\em Simple Schnorr Multi-Signatures with Applications to Bitcoin} 20 May 2018 Last Accessed 08/02/19: \url{https://pdfs.semanticscholar.org/a4da/14a4329d7bf28e2ecbf9a3e42bf1faba523e.pdf?_ga=2.193608301.1119480105.1549621665-1692475185.1549621665} 
-\bibitem{agarwal} Aggarwal, D., 2018. Quantum attacks on Bitcoin, and how to protect against them. Quantum Physics (quant-ph)
-\bibitem{pollard} Koundinya, A., 2013. Performance Analysis of Parallel Pollard's Rho Factoring Algorithm. International Journal of Computer Science \& Information Technology (IJCSIT)
-\bibitem{musig} Maxwell, G., 2018. Simple Schnorr Multi-Signatures with Applications to Bitcoin: \url{https://eprint.iacr.org/2018/068}
-\bibitem{confidential} Greg Maxwell {\em Confidential Transactions} 9 June 2015 Last Accessed 08/02/19: \url{https://people.xiph.org/~greg/confidential_values.txt}
-\bibitem{bulletproof} Benedikt Bunz, Jonathan Bootle, Dan Boneh, Andrew Poelstra, Pieter Wuille and Greg Maxwel {\em Bulletproofs:  Short Proofs for Confidential Transactions and More} 01 Nov 2017 Last Accessed 25/02/19: \url{https://eprint.iacr.org/2017/1066.pdf}
-\bibitem{monero} monero-project {\em Monero: the secure, private, untraceable cryptocurrency} Last Accessed 25/02/2019 \url{https://github.com/monero-project/monero/tree/bc208be63d880871f4f1d6b51a7b35abd5e9b8f0}
-\bibitem{NSA} Daniel J Bernstein and Tanja Lange  {\em Failures in NIST's ECC standards}: \url{https://cr.yp.to/newelliptic/nistecc-20160106.pdf}
-\bibitem{ed25519} Daniel J Bernstein {\em Ed25519: high-speed high-security signatures} 22 November 2017 Last Accessed 18/02/19: \url{https://ed25519.cr.yp.to/}
+\bibitem{PoSr} C. Lacina, 2015. \url{https://cointelegraph.com/news/the-inevitable-failure-of-proof-of-stake-blockchains-and-why-a-new-algorithm-is-needed}
+\bibitem{schnorr} G. Maxwell \textit{et al.} {\em Simple Schnorr Multi-Signatures with Applications to Bitcoin} 20 May 2018 Last Accessed 08/02/19: \url{https://pdfs.semanticscholar.org/a4da/14a4329d7bf28e2ecbf9a3e42bf1faba523e.pdf?_ga=2.193608301.1119480105.1549621665-1692475185.1549621665} 
+\bibitem{agarwal} D. Aggarwal, 2018. {\em Quantum attacks on Bitcoin, and how to protect against them. Quantum Physics}. arXiv:1710.10377
+\bibitem{pollard} A. Koundinya, 2013. {\em Performance Analysis of Parallel Pollard's Rho Factoring Algorithm}. International Journal of Computer Science \& Information Technology (IJCSIT)
+\bibitem{musig} G. Maxwell, 2018. {\em Simple Schnorr Multi-Signatures with Applications to Bitcoin}. \url{https://eprint.iacr.org/2018/068}
+\bibitem{confidential} G. Maxwell, 2015 {\em Confidential Transactions}. \url{https://people.xiph.org/~greg/confidential_values.txt}
+\bibitem{bulletproof} B. B\''{u}nz \textit{et al.}, 2019. {\em Bulletproofs:  Short Proofs for Confidential Transactions and More}.  \url{https://eprint.iacr.org/2017/1066.pdf}
+\bibitem{monero} Monero, 2014-2019. {\em Monero: the secure, private, untraceable cryptocurrency}  \url{https://github.com/monero-project/monero/tree/bc208be63d880871f4f1d6b51a7b35abd5e9b8f0}
+\bibitem{NSA} D. J. Bernstein and T. Lange, 2016.  {\em Failures in NIST's ECC standards}. \url{https://cr.yp.to/newelliptic/nistecc-20160106.pdf}
+\bibitem{ed25519} D. J. Bernstein, 2017. {\em Ed25519: high-speed high-security signatures}. \url{https://ed25519.cr.yp.to/}
 \bibitem{blake} \url{https://coinguides.org/blake2b/}
 \bibitem{electric} \url{https://digiconomist.net/ethereum-energy-consumption}
-\bibitem{swis} Gehring, B., 2018. Swiss Payment Monitor 2018. \url{swisspaymentmonitor.ch}, p18.
-\bibitem{EthTxpD} \url{https://etherscan.io/chart} 21/05/2019
-\bibitem{BitTxpD} \url{https://www.blockchain.com/en/charts} 21/05/2019
-\bibitem{kearney} Joseph J. Kearney and Carlos A. P\'erez-Delgado, 2019. Blockchain Technologies Vulnerability to Quantum Attacks
+\bibitem{swis} B. Gehring, 2018. {\em Swiss Payment Monitor 2018}, p18. \url{swisspaymentmonitor.ch}
+\bibitem{EthTxpD} \url{https://etherscan.io/chart}, 21/05/2019
+\bibitem{BitTxpD} \url{https://www.blockchain.com/en/charts}, 21/05/2019
+\bibitem{kearney} J. J. Kearney and C. A. P\'erez-Delgado, 2019. {\em Blockchain Technologies Vulnerability to Quantum Attacks}
 
 \end{thebibliography}
 
