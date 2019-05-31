@@ -1,14 +1,14 @@
 # Technical White Paper 
 
-This is the full technical whitepaper for the Catalyst network. Within which are a blueprint for the consensus and transaction mechanisms. As well as other elements of the overall project needed for the functionality of the network. It aims to describe the full technical structure of Catalyst as well as addressing security and benchmarking. 
+This is the full technical whitepaper for the Catalyst network, within which are a blueprint for the consensus and transaction mechanisms, as well as other elements of the overall project needed for the functionality of the network. It aims to describe the full technical structure of Catalyst as well as addressing security considerations and providing benchmarking results. 
 
 ## Getting Started
 
-The pdf file is accessable from the Catalyst Technical Paper folder. The pdf should be up to date however to ensure this, open the Catalyst Technical Paper.tex and run in any LaTeX editor. Within the Catalyst Technical Paper folder the excel spreadsheet describes the file structure and file paths. When making any changes to the file structure, ensure that this excel is also updated. Each chapter and section of the paper should have its own .tex file. Subsections will be integrated into their parent section (Unless the subsection is unusually long).
+The pdf file is accessible from the Catalyst Technical Paper folder. The pdf should be up to date however to ensure this, open the Catalyst Technical Paper.tex and run in any LaTeX editor. Within the Catalyst Technical Paper folder the excel spreadsheet describes the file structure and file paths. When making any changes to the file structure, ensure that this excel is also updated. Each chapter and section of the paper should have its own .tex file. Subsections will be integrated into their parent section (Unless the subsection is unusually long).
 
 ### Prerequisites
 
-For running and editing LaTeX files you can use TexWorks - https://sourceforge.net/projects/texworks.mirror/ for MacOS, Windows and Linux. Other editors are availiable.
+For running and editing LaTeX files you can use TexWorks - https://sourceforge.net/projects/texworks.mirror/ for MacOS, Windows and Linux. Other editors are available.
 
 Texworks does not contain a spell checker built in. To install:
 
@@ -28,6 +28,12 @@ The files are structured according to the excel file Folder Structure. The prima
 * All figures must be held within the relevant figures folder 
 * Pdf must automatically generate when used on LaTeX editor
 * Sources must be correctly cited. For a reference generator use https://www.harvardgenerator.com/
+
+## Compiling the tex file
+
+Generate a new Pdf file after editing a tex file, modifying a figure, or adding a reference in the bib file. 
+
+Using Texworks, either run (twice) in pdfLatex mode on the main tex file catalyst-technical-paper.tex. If modifying the bibliography file, first run (twice) in Biber mode. 
 
 ## Versioning
 
