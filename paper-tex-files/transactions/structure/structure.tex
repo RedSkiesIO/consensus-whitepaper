@@ -7,7 +7,7 @@ A transaction object on Catalyst is made of the following components:
 \item A timestamp corresponding to the point in time the transaction is complete and ready to be broadcast on the network.
 \item A set of $n$ transaction entries $\{E_i\}_{i=1,..,n}$. Transaction entries are specific to the nature of the token and data exchange. These are described in \ref{Sec:TEnt}.
 \item An aggregated signature $T$ proving ownership of the set of accounts called in the transaction entries.
-\item A locking time corresponding to a point in time after which the transaction can be processed by a pool of workers.
+\item A locking time corresponding to a point in time after which the transaction can be processed by a worker pool.
 \item the transaction fees paid the transaction participants
 \item A data field that can contain up to $x$ Bytes of data transferred in data storage or smart contract-related transactions. 
 \end{itemize}

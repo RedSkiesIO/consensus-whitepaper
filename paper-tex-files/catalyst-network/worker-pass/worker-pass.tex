@@ -1,19 +1,19 @@
-As discussed in section \ref{Sec:Reg}, nodes sit in the pool of workers for a limited period of time. Only nodes with a valid worker pass can remain in the pool. At the end of each cycle, some worker passes have their validity are revoked. The probability that a worker pass expires at the end of a given cycle $C_n$ increases with the period of time spent by the node in the pool of workers. \\
+As discussed in section \ref{Sec:Reg}, nodes sit in the worker pool for a limited period of time. Only nodes with a valid worker pass can remain in the pool. At the end of each cycle, some worker passes have their validity revoked. The probability that a worker pass expires at the end of a given cycle $\mathcal{C}_n$ increases with the period of time spent by the node in the worker pool. \\
 
-Assume that a node $W_i$, previously siting in the work queue, joins the pool of worker at the beginning of a cycle $C_n$. The node is given the set of parameters $(\lambda_i, t_{i,0})$ where $t_{i,0}=t_{n,0}$ corresponds to the beginning of the cycle $C_n$. Each node update their local copy of the hash table $DHT_w$ adding a row with the parameters $\{Id_i, \lambda_i, t_{i,0}\}$ for the new joiner $W_i$.\\
+Assume that a node $W_i$, previously siting in the work queue, joins the worker pool at the beginning of a cycle $\mathcal{C}_n$. The node is given the set of parameters $(\lambda_i, t_{i,0})$ where $t_{i,0}=t_{n,0}$ corresponds to the beginning of the cycle $\mathcal{C}_n$. Each node updates their local copy of the hash table $DHT_w$ adding a row with the parameters $\{Id_i, \lambda_i, t_{i,0}\}$ for the new joiner $W_i$.\\
 
-$\lambda_i$ acts as a decay constant and is used to compute the probability that a node remains in the pool of worker at the end of a cycle. The probability $P_{leave,i}(t)$ that a node $W_i$ leaves the pool of worker at a time $t$ is given by that formula:
+$\lambda_i$ acts as a decay rate and is used to compute the probability that a node remains in the worker pool at the end of a cycle. The probability $P_{leave,i}(t)$ that a node $W_i$ leaves the worker pool at a time $t$ is given by that formula:
 \begin{center}
 $P_{leave,i}(t) = 1 - e^{-\lambda_i(t-t_{i,0})}$
 \end{center}
-The decay constant is defined by  $\lambda_i = ln(2)/\Delta t_{i,1/2}$ where $\Delta t_{i,1/2}$ corresponds to the period of time after which the node $W_i$ has a 50\% probability of  remaining in the pool of worker. The probability $P_{leave,i}(t)$ verifies that:
+The decay rate is defined by  $\lambda_i = ln(2)/\Delta t_{i,1/2}$ where $\Delta t_{i,1/2}$ corresponds to the node mean lifetime, that is the period of time after which the node $W_i$ has a 50\% probability of remaining in the worker pool. The probability $P_{leave,i}(t)$ verifies that:
 \begin{flushleft}
-$P_{leave,i}(t = t_{i,0}) = 0$\\
-$P_{leave,i}(t = t_{i,0} + \Delta t_{i,1/2}) = 0.5$\\
-$P_{leave,i}(t = \infty) = 1$
+~~~~~~~~~~~~~~~~~~~~$P_{leave,i}(t = t_{i,0}) = 0$\\
+~~~~~~~~~~~~~~~~~~~~$P_{leave,i}(t = t_{i,0} + \Delta t_{i,1/2}) = 0.5$\\
+~~~~~~~~~~~~~~~~~~~~$P_{leave,i}(t = \infty) = 1$
 \end{flushleft}
  
-At the end of a cycle $C_n$ , each node on the network runs the algorithm\\ $NodeLeaveWorkerPool(DHT_w,t_{n,0})$ such that:
+At the end of a cycle $\mathcal{C}_n$, each node on the network runs the algorithm\\ $NodeLeaveWorkerPool(DHT_w,t_{n,0})$ such that:
 \begin{enumerate}
 \item For each row in $DHT_w$, given a set of parameters $\{Id_i, \lambda_i, t_{i,0}\}$, generate a probability:
 \begin{center}
