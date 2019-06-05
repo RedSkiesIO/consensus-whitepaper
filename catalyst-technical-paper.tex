@@ -15,6 +15,7 @@
 \usepackage{rotating}
 \usepackage{epstopdf}
 \usepackage{pdflscape}
+\usepackage{ulem}
 \usepackage[margin=0.8in]{caption}
 \usepackage[margin=0.8in]{geometry}
 \usepackage{array,multirow,multicol}
@@ -37,11 +38,19 @@
 \author{Dr. Pauline Bernat, Joseph Kearney and Francesca Sage-Ling}
 \maketitle 
 
+%\begin{abstract}
+%\input{paper-tex-files/abstract/abstract}
+%\end{abstract}
+%\newpage
+
+\chapter*{Abstract}
+\input{paper-tex-files/abstract/abstract}
+\addcontentsline{toc}{section}{Abstract}
+
 \tableofcontents
 
 
 %GLOSSARY
-
 \chapter*{Glossary} \label{Cha:Glo}
 \addcontentsline{toc}{chapter}{Glossary}
 
