@@ -1,12 +1,12 @@
-Nodes in the network receive and forward transactions to their peers. In order to prevent spamming attack over the network,  nodes only forward transactions that are considered valid against a validity check list. 
-
- Before forwarding it to its peers, a peer verifies the transaction against the following list of criteria:
+Nodes in the network receive and forward transactions to their peers. In order to prevent spamming attack over the network,  nodes only forward transactions that are considered valid against a validity check list. Before forwarding it to its peers, a peer verifies the transaction against the following list of criteria:
  
 \begin{itemize}
 \item The transaction syntax (aforementioned in \ref{Sec:TStru}) and data structure must be correct.
 \item The transaction size in bytes is greater than or equal to 160 Bytes (defined by the parameter MIN\_STD\_SIZE for non-confidential transaction) or 800 Bytes (defined by the parameter MIN\_CON\_SIZE for confidential transaction).
 \item The transaction size in bytes is less than 1 Mbyte (defined by the parameter MAX\_STD\_SIZE or MAX\_CON\_SIZE depending on the transaction type).
-\item The transaction list of entries must have at least two elements, each element must have a correct syntax. For non-confidential transaction $E_i$ must have a total size of 48-byte and 3 components:
+\item The transaction list of entries must have at least two elements, each element must have a correct syntax. 
+
+For non-confidential transaction $E_i$ must have a total size of 48-byte and 3 components:
 \begin{itemize}
 \item A public key $Q_i$ with a corresponding account address $A_i$ stored on the ledger where the account have a visible balance (8-byte field).
 \item An amount $v_i^t$ that once added to the balance $v_i$ of the account mapped with the public key leaves the account balance positive ($v_i+v_i^t > 0$)
@@ -24,4 +24,4 @@ For confidential transaction $E_i$ must have a total size of 742-byte and 4 comp
 \item The transaction signature must validate against the public key built out of the public keys stored in the transaction entries 
 \end{itemize}
 
-The verification of the range proofs in the transaction is costly in computer resources, and is therefore only performed by the producers. \\
+The verification of the range proofs in the transaction is costly in computer resources, and is therefore only performed by the producers. 
