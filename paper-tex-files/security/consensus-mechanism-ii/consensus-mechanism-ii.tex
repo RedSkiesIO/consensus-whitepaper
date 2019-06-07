@@ -121,6 +121,17 @@ In summary the probability $\mathcal{P}(x>P/2)$ that $x >P/2$ can be expressed a
 The tests conducted on the gossip protocol implemented on Catalyst suggest that a high percentage of nodes ($90-95\%$) in a large network will successfully collect data from all their peers. Furthermore tests on a smaller networks such as the sub-networks  of workers and producers in charge of producing the ledger state update during a ledger cycle gives the percentage of nodes collecting the data from all their peers as close to 100\%. As a result the numbers $(C_{j} ,V_{j}, U_{j})$ of data collected by a producer $P_j$ are naturally expected to be close to $P$. Atlas City researchers conducted a simulation analysis to determine the optimal set of parameters $(C_n, C_{min}, V_{min}, U_{min})$ to ensure a probability $\mathcal{P}(x>P/2)$ greater than 99.999\% for various sizes of producers pool $P$. 
 Figure~\ref{fig:tree} displays a \textit{n-ary} tree illustrating the minimum sets of parameters $(f_{prod}, f_C, f_V, f_U)$ found for a pool of producers made of (a) 200 nodes and (b) 500 nodes. As the number of nodes in the pool of producers increases, the thresholds naturally decrease. 
 
- 
+  
+ \begin{figure}[H]
+ \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{Figures/tree_P_200}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{Figures/tree_P_500}
+    \end{subfigure}    
+    \caption{Minimum sets of parameters $(f_{prod}, f_C, f_V, f_U)$ found for $\mathcal{P}(x>P/2) > 99.999\%$ for P = 200 (left) and P = 500 (right).}
+    \label{fig:tree}
+\end{figure}
 
- 
+
