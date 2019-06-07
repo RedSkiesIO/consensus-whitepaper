@@ -23,19 +23,19 @@ The amount component of an entry however differs depending on the nature of the 
 \end{itemize}
 
 Assume that the balance  $v_i$ of the account $A_i$ is initially represented on the ledger by the PC: 
-\begin{center}
-$C_{i}=(v_i~mod~l_H)H+ (b_i~mod~l_G)G$ 
-\end{center}
+\begin{equation}
+C_{i}=(v_i~mod~l_H)H+ (b_i~mod~l_G)G
+\end{equation}
 Where $b_i$ is a blinding factor chosen by the account holder.  The latter wishes to transfer or receive $a_i$ tokens. To obfuscate the amount of tokens transferred in a transaction entry $E_i$, the account holder creates a PC: 
-\begin{center}
-$C_i^{t} = (v_i^{t}~mod~l_H)H+ (b_i^{t}~mod~l_G)G$ 
-\end{center}
+\begin{equation}
+C_i^{t} = (v_i^{t}~mod~l_H)H+ (b_i^{t}~mod~l_G)G
+\end{equation}
 Where $v_i^{t} = a_i$ if receiving the tokens ($a_i > 0$) and $v_i^{t} = l_H+a_i$ if spending the tokens ($a_i<0$).\\
 
 Given the properties of the Elliptic curve, $l_H$ is much greater than $M$ in the second case. As a result, it would not be possible to construct a valid range proof for $v_i^{t}$. $U_i$ thus creates a second PC:
-\begin{center} 
-$C_{i}'=(v_i'~mod~l_H)H+ (b_i'~mod~l_G)G$
-\end{center}
+\begin{equation} 
+C_{i}'=(v_i'~mod~l_H)H+ (b_i'~mod~l_G)G
+\end{equation}
 Defined as:
 \begin{center}
 \[
@@ -57,16 +57,16 @@ Table~\ref{tab:TrSt} summarises the different components of a transaction and th
      \multicolumn{3}{| l | }{Type}  & 4 Bytes \\ \hline
      \multicolumn{3}{| l | }{Timestamp}  & 4 Bytes \\ \hline
 
-       \multirow{ 4}{*}{Entries ($n>1$)} & \multirow{ 2}{*}{non-confidential entry} & 32-byte public keys &  \multirow{ 2}{*}{$n \cdot 40$ Bytes} \\
+       \multirow{ 4}{*}{Entries ($n>1$)} & \multirow{ 2}{*}{non-confidential entry} & 32-byte public key &  \multirow{ 2}{*}{$n \cdot 40$ Bytes} \\
      \cline{3-3}
-    	& & 8-byte amounts &\\  
+    	& & 8-byte amount &\\  
      \cline{2-4}
 
-                   &   \multirow{ 2}{*}{or confidential entry} & 32-byte public keys &  \multirow{ 2}{*}{$n \cdot 736$ Bytes} \\
+                   &   \multirow{ 2}{*}{or confidential entry} & 32-byte public key &  \multirow{ 2}{*}{$n \cdot 736$ Bytes} \\
      \cline{3-3}
-   	&   & 32-byte PCs &\\ 
+   	&   & 32-byte PC &\\ 
      \cline{3-3}
-	& & 672-byte range proofs &\\ \hline
+	& & 672-byte range proof &\\ \hline
    \multicolumn{3}{| l | }{Aggregated Signature} & 64 Bytes\\  \hline
  \multicolumn{3}{| l | }{Transaction fees} & 8 Bytes \\  \hline   
  \multicolumn{3}{| l | }{Locking Time}  & 4 Bytes \\  \hline   

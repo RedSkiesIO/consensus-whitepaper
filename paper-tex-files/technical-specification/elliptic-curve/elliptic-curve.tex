@@ -3,9 +3,9 @@ On the Catalyst ledger, Elliptic Curve (EC) cryptography is used to sign message
 There exists many types of EC, some of which are part of NIST curves~\cite{Hankerson2011}. While the NIST curves, such as secp256r1 curve, are advertised as being chosen verifiably at random, there is little explanation for the seeds used to generate these. By contrast, the process used to pick non-NIST curves, such as the twisted Edwards Curve25519 used in Monero~\cite{monero}, is fully documented and rigid enough so that independent verifications can and have been done. This is widely seen as a security advantage, since it prevents the generating party from maliciously manipulating the curve parameters~\cite{NSA}. Moreover, EC such as Curve25519 are designed to facilitate the production of high-performance constant-time implementations. \\
 
 On the Catalyst ledger we opt for the twisted Edwards Curve25519 \cite{ed25519}, that is a birational equivalent of the Montgomery curve Curve25519. It is defined over the prime field $\mathbb{F}_{p}$ where $p = 2^{255} - 19$, by the following equation:
-\begin{center}
-$-x^2+y^2=1-\frac{121665}{121666}x^2y^2$
-\end{center}
+\begin{equation}
+-x^2+y^2=1-\frac{121665}{121666}x^2y^2
+\end{equation}
 The order of Ed25519 can be expressed as $N=2^cl$ with $c$ a positive integer and $l$ a 253-bit prime number. $N$ is a 76-digit number equal to:
 \begin{center}
 \begin{footnotesize}

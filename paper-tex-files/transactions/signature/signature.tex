@@ -6,7 +6,7 @@ In blockchains such as Bitcoin and Ethereum, transaction inputs are signed using
  
  Public key recovery is however incompatible with batch validation, \textit{i.e.} it is not possible to recover a set of public keys from an aggregated signature on multiple transaction inputs. As a result the choice of ECDSA-based scheme for Catalyst transaction would not be optimal as a transaction contain a minimum of two entries. A Schnorr-based signature scheme is preferred to enable user to jointly produce a signature using their private keys. A solution recently proposed by Y. Seurin \textit{et al}~\cite{schnorr} also accounts for protection against key-rogue attacks, preventing key malleability to create validate signatures on transaction without knowing the users' private key. We propose a Schnorr-based signature scheme inspired from this recently published work. \\
 
-We define the transaction core message $m$ as a set of $n$ entries $\{E_i\}_{i=1,..,n}$  and additional information $X$ mentioned in the previous section (see table~\ref{tab:TrSt}):
+We define the transaction core message $m$ as a set of $n$ entries $\{E_i\}_{i=1,..,n}$  and additional information $X$ mentioned in the previous section (see table~\ref{tab:TrSt}), excluding the transaction timestamp:
 \begin{center}
 $m = \{E_i\}_{i=1,..,n} + X$ 
 \end{center}
@@ -39,7 +39,7 @@ Where $r_i$ is a pseudo-random number chosen by $U_i$ and kept secret.\\
 
  Recall that each entry $E_i$ in a confidential transaction includes a PC obfuscating the amount $v_i^{t}$ defined by: $C_i^{t} = v_i ^{t} H + b_i^{t} G$. For confidential transaction we define $r_i = b_i^t + d_i$ where $d_i$ is a pseudo-random number chosen by $U_i$ and kept secret.\\
 
-The partial signature $s_i$ and $R_i = r_iG$ are exchanged amongst the transaction participants. Each participant in the transaction $U_k$ ($k\neq i$) can compute:
+The partial signature ($s_i$, $R_i$) with $R_i = r_iG$ is forwarded to the other transaction participants. Each participant in the transaction $U_k$ ($k\neq i$) can compute:
 
 \begin{equation} 
 R_i' = s_{i}\cdot G - e_i\cdot Q_i
@@ -49,7 +49,7 @@ where $Q_i = k_i\cdot G$ and verify that $R_i' = R_i$, proving the validity of t
 
 The last participant to receive the full set of partial signatures builds the transaction signature.\\
 
- The signature of non-confidential transaction is composed of the pair:
+ The transaction signature of non-confidential transaction is composed of the pair:
 \begin{equation} 
 T= (\underbrace{s_{1}+..+s_{n}}_{s}, \underbrace{R_{1}+..+R_{n}}_{R})
 \end{equation}
@@ -63,14 +63,16 @@ At the verification phase, a producer can check that the total signature is as f
 
 If so, the signature $T = (s,R)$ is valid. The signature is composed of a 32-byte integer and a 32-byte EC point, leading to a compact 64-byte signature for the entire transaction. \\
 
-The signature of confidential transaction is defined differently. Using the public keys $\{D_i = d_iG\}_{i=1,..,n}$, it is composed of the pair:
+The transaction signature of confidential transaction is defined differently although its structure is the same as that of non-confidential transaction . Using the public keys $\{D_i = d_iG\}_{i=1,..,n}$, it is composed of the pair:
 \begin{equation} 
 T= (\underbrace{s_{1}+..+s_{n}}_{s}, \underbrace{D_{1}+..+D_{n}}_{D})
 \end{equation}
 
 The verifier can compute:
 \begin{center}
-$R' = \sum_{i=1}^{n}C_i^t - v^fH + D$
+$R' = \sum_{i=1}^{n}C_i^t + v^fH + D$
 \end{center}
 
-If $R' = s \cdot G - \sum_{i=1}^{n}e_i'Q_i$, the signature $T = (s,D)$ is valid. The validity of $T$ proves a verifier that the sum of the commitments in the transaction entries results in a commitment to 0 after subtracting the transaction fees paid by the different participant, thus ensuring that no tokens are created or lost in the transaction. 
+If $R' = s \cdot G - \sum_{i=1}^{n}e_i'Q_i$, the signature $T = (s,D)$ is valid. The validity of $T$ proves a verifier that the sum of the commitments in the transaction entries results in a commitment to 0 after adding the transaction fees paid by the different participant, thus ensuring that no tokens are created or lost in the transaction. \\
+
+Once the transaction signature is valid, the participant can append it to the transaction. The transaction timestamp is defined as the time when the transaction is completed by said participant and ready for broadcast across the network. 

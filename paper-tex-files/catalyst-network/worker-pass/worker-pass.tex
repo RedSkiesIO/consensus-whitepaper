@@ -3,22 +3,22 @@ As discussed in section \ref{Sec:Reg}, nodes sit in the worker pool for a limite
 Assume that a node $W_i$, previously siting in the work queue, joins the worker pool at the beginning of a cycle $\mathcal{C}_n$. The node is given the set of parameters $(\lambda_i, t_{i,0})$ where $t_{i,0}=t_{n,0}$ corresponds to the beginning of the cycle $\mathcal{C}_n$. Each node updates their local copy of the hash table $DHT_w$ adding a row with the parameters $\{Id_i, \lambda_i, t_{i,0}\}$ for the new joiner $W_i$.\\
 
 $\lambda_i$ acts as a decay rate and is used to compute the probability that a node remains in the worker pool at the end of a cycle. The probability $P_{leave,i}(t)$ that a node $W_i$ leaves the worker pool at a time $t$ is given by that formula:
-\begin{center}
-$P_{leave,i}(t) = 1 - e^{-\lambda_i(t-t_{i,0})}$
-\end{center}
+\begin{equation}
+P_{leave,i}(t) = 1 - e^{-\lambda_i(t-t_{i,0})}
+\end{equation}
 The decay rate is defined by  $\lambda_i = ln(2)/\Delta t_{i,1/2}$ where $\Delta t_{i,1/2}$ corresponds to the node mean lifetime, that is the period of time after which the node $W_i$ has a 50\% probability of remaining in the worker pool. The probability $P_{leave,i}(t)$ verifies that:
 \begin{flushleft}
-~~~~~~~~~~~~~~~~~~~~$P_{leave,i}(t = t_{i,0}) = 0$\\
-~~~~~~~~~~~~~~~~~~~~$P_{leave,i}(t = t_{i,0} + \Delta t_{i,1/2}) = 0.5$\\
-~~~~~~~~~~~~~~~~~~~~$P_{leave,i}(t = \infty) = 1$
+\hspace{6cm}$P_{leave,i}(t = t_{i,0}) = 0$\\
+\hspace{6cm}$P_{leave,i}(t = t_{i,0} + \Delta t_{i,1/2}) = 0.5$\\
+\hspace{6cm}$P_{leave,i}(t = \infty) = 1$
 \end{flushleft}
  
 At the end of a cycle $\mathcal{C}_n$, each node on the network runs the algorithm\\ $NodeLeaveWorkerPool(DHT_w,t_{n,0})$ such that:
 \begin{enumerate}
 \item For each row in $DHT_w$, given a set of parameters $\{Id_i, \lambda_i, t_{i,0}\}$, generate a probability:
-\begin{center}
-$P_{leave,i}(t_{n,0}) = 1 - e^{-\lambda_i(t_{n,0}-t_{i,0})}$
-\end{center}
+\begin{equation}
+P_{leave,i}(t_{n,0}) = 1 - e^{-\lambda_i(t_{n,0}-t_{i,0})}
+\end{equation}
 \item Define $rnd_i$ as an integer randomly selected from the range $[1, N_i]$ where $N_i = 1/P_{leave,i}(t_{n,0})$. If and only if $rnd_i = 1$, the worker pass is revoked and the row is removed from the table.
 \item After processing each and every row, update $DHT_w$ and $DHT_q$ accordingly: for $n$ rows removed at step (2), move the top $n$ rows from $DHT_q$ to $DHT_w$. 
 \end{enumerate}

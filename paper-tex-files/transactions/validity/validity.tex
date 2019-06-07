@@ -20,7 +20,7 @@ For confidential transaction $E_i$ must have a total size of 742-byte and 4 comp
 \end{itemize}
 
 \item The transaction fee amount $v^f$ is greater than a (positive) minimum fee values MIN\_TX\_FEE
-\item The relation $\sum_{i=1}^{n}v^t_i - v^f = 0$ must be verified for non-confidential transaction.
+\item The relation $\sum_{i=1}^{n}v^t_i + v^f = 0$ must be verified for non-confidential transaction.
 \item The transaction signature must validate against the public key built out of the public keys stored in the transaction entries 
 \end{itemize}
 
