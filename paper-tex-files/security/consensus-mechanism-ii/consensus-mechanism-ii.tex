@@ -112,14 +112,14 @@ In summary the probability $\mathcal{P}(x>P/2)$ that $x >P/2$ can be expressed a
 %\end{center}
 \begin{center}
 \[
-  \mathcal{P}(x>P/2) = f(f_P, f_{prod}, f_V, f_U)\begin{cases}
-               f_P = C_{min}/P, f_{prod} = C_n/P\\
+  \mathcal{P}(x>P/2) = f(f_{prod}, f_C, f_V, f_U)\begin{cases}
+               f_{prod} = C_n/P, f_C = C_{min}/P\\
                f_V = V_{min}/P, f_{U} = U_{min}/P
             \end{cases}
 \]
 \end{center}
-The tests conducted on the gossip protocol implemented on Catalyst suggest that a high percentage of nodes ($90-95\%$) in a large network will successfully collect data from all their peers. Furthermore tests on a smaller networks such as the sub-networks  of workers and producers in charge of producing the ledger state update during a ledger cycle gives the percentage of nodes collecting the data from all their peers as close to 100\%. As a result the numbers $(C_{j} ,V_{j}, U_{j})$ of data collected by a producer $P_j$ are naturally expected to be close to $P$. Atlas City researchers conducted a simulation analysis to determine the optimal set of parameters $(C_{min} ,C_n, V_{min}, U_{min})$ to ensure a probability $\mathcal{P}(x>P/2)$ greater than 99.999\% for various sizes of producers pool $P$. 
-Figure~\ref{fig:tree} displays a \textit{n-ary} tree illustrating the minimum sets of parameters $(f_P ,f_{prod}, f_V, f_U)$ found for a pool of producers made of (a) 200 nodes and (b) 500 nodes. As the number of nodes in the pool of producers increases, the thresholds naturally decrease. 
+The tests conducted on the gossip protocol implemented on Catalyst suggest that a high percentage of nodes ($90-95\%$) in a large network will successfully collect data from all their peers. Furthermore tests on a smaller networks such as the sub-networks  of workers and producers in charge of producing the ledger state update during a ledger cycle gives the percentage of nodes collecting the data from all their peers as close to 100\%. As a result the numbers $(C_{j} ,V_{j}, U_{j})$ of data collected by a producer $P_j$ are naturally expected to be close to $P$. Atlas City researchers conducted a simulation analysis to determine the optimal set of parameters $(C_n, C_{min}, V_{min}, U_{min})$ to ensure a probability $\mathcal{P}(x>P/2)$ greater than 99.999\% for various sizes of producers pool $P$. 
+Figure~\ref{fig:tree} displays a \textit{n-ary} tree illustrating the minimum sets of parameters $(f_{prod}, f_C, f_V, f_U)$ found for a pool of producers made of (a) 200 nodes and (b) 500 nodes. As the number of nodes in the pool of producers increases, the thresholds naturally decrease. 
 
  
 
