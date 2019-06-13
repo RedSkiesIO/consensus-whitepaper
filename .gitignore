@@ -45,6 +45,11 @@ $RECYCLE.BIN/
 *.rar
 *.tar
 *.zip
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*-blx.bib
 
 # Logs
 
