@@ -42,6 +42,14 @@
 \usepackage[autostyle]{csquotes}
 \usepackage[backend=biber, sorting=none]{biblatex}
 \bibliography{catalyst-technical-paper}
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+\setcounter{biburllcpenalty}{9000}
+
+\hypersetup{
+  urlcolor   = blue
+}
+
 
 \begin{document}
 
@@ -240,7 +248,7 @@
 
 \subsection{Signature Scheme}\label{Sec:SSS}
 
-\input{paper-tex-files/security/signature-scheme/signature-scheme}
+\input{paper-tex-files/security/signature-scheme/signature-scheme-article}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -252,6 +260,11 @@
 \input{paper-tex-files/conclusion/conclusion}
 
  \newpage
+ 
+\begin{raggedright}
+\normalem
 \printbibliography
-\nocite{*}
+
+\end{raggedright}
+
 \end{document}
