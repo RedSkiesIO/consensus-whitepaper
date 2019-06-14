@@ -118,20 +118,37 @@ In summary the probability $\mathcal{P}(x>P/2)$ that $x >P/2$ can be expressed a
             \end{cases}
 \]
 \end{center}
-The tests conducted on the gossip protocol implemented on Catalyst suggest that a high percentage of nodes ($90-95\%$) in a large network will successfully collect data from all their peers. Furthermore tests on a smaller networks such as the sub-networks  of workers and producers in charge of producing the ledger state update during a ledger cycle gives the percentage of nodes collecting the data from all their peers as close to 100\%. As a result the numbers $(C_{j} ,V_{j}, U_{j})$ of data collected by a producer $P_j$ are naturally expected to be close to $P$. Atlas City researchers conducted a simulation analysis to determine the optimal set of parameters $(C_n, C_{min}, V_{min}, U_{min})$ to ensure a probability $\mathcal{P}(x>P/2)$ greater than 99.999\% for various sizes of producers pool $P$. 
-Figure~\ref{fig:tree} displays a \textit{n-ary} tree illustrating the minimum sets of parameters $(f_{prod}, f_C, f_V, f_U)$ found for a pool of producers made of (a) 200 nodes and (b) 500 nodes. As the number of nodes in the pool of producers increases, the thresholds naturally decrease. 
+The tests conducted on the gossip protocol implemented on Catalyst suggest that a high percentage of nodes ($90-95\%$) in a large network will successfully collect data from all their peers. Furthermore tests on a smaller networks such as the sub-networks  of workers and producers in charge of producing the ledger state update during a ledger cycle gives the percentage of nodes collecting the data from all their peers as close to 100\%. As a result the numbers $(C_{j} ,V_{j})$ of data collected by a producer $P_j$ are naturally expected to be close to $P$ and $U_j$ close to $C_n$. A simulation analysis was done to determine the optimal set of parameters $(C_n, C_{min}, V_{min}, U_{min})$ to ensure a probability $\mathcal{P}(x>P/2)$ greater than 99.999\% for various sizes of the producers pool $P$.
+Figure~\ref{fig:tree} displays a \textit{n-ary} tree ($n=4$) illustrating the minimum sets of parameters $(f_{prod}, f_C, f_V, f_U)$ found for a pool of producers made of (a) 200 nodes and (b) 500 nodes when varying the parameters $(f_{prod}, f_C, f_V, f_U)$ between 0.75 and 0.95 with a step of 0.05. We observe that for $P = 200$, when $f_{prod}=80\%$ of producers generate the correct ledger state update, $\mathcal{P}(x>P/2) > 99.999\%$ when all thresholds are set at 80\%. The values represented in the tree branches show how the thresholds naturally decrease as the number $P$ of nodes in the pool of producers increases.
 
-  
- \begin{figure}[H]
- \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/tree_P_200}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.47\textwidth}
-        \includegraphics[width=\textwidth]{Figures/tree_P_500}
-    \end{subfigure}    
-    \caption{Minimum sets of parameters $(f_{prod}, f_C, f_V, f_U)$ found for $\mathcal{P}(x>P/2) > 99.999\%$ for P = 200 (left) and P = 500 (right).}
-    \label{fig:tree}
+
+\begin{figure}[H]
+\centering
+   \begin{subfigure}[b]{0.45\textwidth}
+       \includegraphics[width=\textwidth]{Figures/tree_P_200}
+   \end{subfigure}
+   \begin{subfigure}[b]{0.47\textwidth}
+       \includegraphics[width=\textwidth]{Figures/tree_P_500}
+   \end{subfigure}
+   \caption{Minimum sets of parameters $(f_{prod}, f_C, f_V, f_U)$ found for $\mathcal{P}(x>P/2) > 99.999\%$ for P = 200 (left) and P = 500 (right).}
+   \label{fig:tree}
 \end{figure}
+
+Figure~\ref{fig:treeSum} shows the minimum common threshold found for $(f_C, f_V, f_U)$ as a function $P$ when $f_{prod} = 75\%$ and $f_{prod} = 95\%$. \\
+
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+ \vspace{-1.5cm}
+ \begin{center}
+   \includegraphics[width=0.4\textwidth]{Figures/tree_summary_p200t1000.png}
+ \end{center}
+ \vspace{-0.6cm}
+  \caption{Minimum common set of parameters $(f_C, f_V, f_U)$ as a function of $P$ when $f_{prod} = 75\%$ (blue) and $f_{prod} = 95\%$ (green).}
+   \label{fig:treeSum}
+\end{wrapfigure}
+
+At $P=1000$, the two curves converge to a common threshold $f_C=f_V=f_U=76\% \pm 1\%$. When $f_{prod} = 75\%$, we find that in approximately 95\% of the conducted tests, $x=P$, all producers broadcast the same quantity $\mathcal{H}(\Delta L_n)~||~\#(\mathcal{L}_{n}(vote))$. When $P=200$ and $f_{prod} = 75\%$, a higher common threshold $f_C = f_V = f_U = 85\% \pm 1\%$ is found to satisfy $\mathcal{P}(x>P/2) > 99.999\%$ and $x=P$ in roughly 80\% of the tests.\\
+\\
+The decision regarding the thresholds  chosen for generating the ledger state update thus depends on $P$. As explained in section~\ref{Sec:ConSec}, the choice of $P$ as well as that of the worker pool size $N$ also influence the resistance to 51\% attack. Figure~\ref{fig:P} shows that in order to keep the probability of a successful 51\% attack below 1 in a billion when $N=2000$, the size of producers must comprise at least $P=1200$ producers. The simulation conducted in this section shows that when $P \geq 1000$ a common threshold value $f_C = f_V = f_U = 80\%$ ensures that a consensus can be reached at 99.999\% confidence level when $f_{prod}$ $\geq$ 75\% for any $x$ value greater or equal to $P/2$.
 
 
