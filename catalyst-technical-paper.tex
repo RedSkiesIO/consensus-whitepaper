@@ -21,6 +21,7 @@
 \usepackage{array,multirow,multicol}
 
 
+
 \usepackage[dvipsnames]{xcolor}
 \definecolor{bulg}{rgb}{0.5, 0.0, 0.13}
 \captionsetup{font=scriptsize}
@@ -42,6 +43,13 @@
 \usepackage[autostyle]{csquotes}
 \usepackage[backend=biber, sorting=none]{biblatex}
 \bibliography{catalyst-technical-paper}
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+\setcounter{biburllcpenalty}{9000}
+
+\hypersetup{
+  urlcolor   = blue
+}
 
 \begin{document}
 
@@ -246,6 +254,9 @@
 \input{paper-tex-files/conclusion/conclusion}
 
 
+\begin{raggedright}
+\normalem
 \printbibliography
-\nocite{*}
+
+\end{raggedright}
 \end{document}
