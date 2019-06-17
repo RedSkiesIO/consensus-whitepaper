@@ -168,15 +168,16 @@ During a period of time $\Delta t_{s0} < \Delta t_{s}$, $P_j$ executes the follo
 \label{eq:Hj}
 \fbox{$\mathbf{H_{j} = \mathcal{H}(\Delta L_n)~||~\#(\mathcal{L}_{n}(vote))~||~Id_j}$}
 \end{equation}
-\item The producer then broadcasts $H_j$ to the entire network. Upon receiving individuals quantities, workers store $\#(\mathcal{L}_{n}(vote))$ in their mempool. 
+\item The producer then broadcasts $H_j$ to the network.% Worker nodes, as well as DFS nodes collect the quantities $\{H_k\}_{\forall~k\in\{P\}}$. %Upon receiving individuals quantities, workers store $\#(\mathcal{L}_{n}(vote))$ in their mempool. 
 \end{enumerate}
 
 
 \subsubsection{Ledger state synchronisation across the network}
 
-During the time period [$t_{s}, t_s + \Delta t_{cycle}$], user nodes in the network collect $H_k~\forall k \in P$ quantities from producers. Extracting the identifier $Id_k$ in $H_k$ a user node can easily compile a list of identical $\mathcal{H}(\Delta L_n)$ hash values. Once a user node has collected more than $P/2$ identical hash values, they can send a request to producers to receive $\Delta L_n$ and verifies the validity if it against any $H_k$ quantity previously stored. When valid, the user can safely synchronise their local copy to the ledger. The balance of accounts stored on the ledger are updated and the producers effectively collect their rewards. \\
+During the time period [$t_{s}, t_s + \Delta t_{cycle}$], worker nodes, as well as DFS nodes collect $\{H_k\}_{\forall k \in P}$ quantities broadcast by the producers. 
+By extracting the identifier $Id_k$ embedded in any collected quantity $H_k$, a DFS node can easily compile a list of producer identifiers having broadcast the same quantity $\mathcal{H}(\Delta L_n)$ (concatenated with the same list $\mathcal{L}_{n}(vote)$). Producers having generated the correct ledger state update $\Delta L_n$ can forward it to DFS nodes. Once a DFS node has collected $x \geq P/2$ identical hash values, they can accept  any $\Delta L_n$ value matching $\mathcal{H}(\Delta L_n)$. User nodes can then request the ledger state update  $\Delta L_n$  from DFS nodes and safely synchronise their local copy to the ledger. The balance of accounts stored on the ledger are updated and the producers effectively collect their rewards. \\
 
-Worker nodes also store the lists $\mathcal{L}_{n}(vote)$ embedded in each $H_k$ quantity. If selected to be a producer for the next cycle $\mathcal{C}_{n+1}$, the worker can use these to generate the reward allocated to the producers who correctly voted for the ledger state update during $\mathcal{C}_{n+1}$.\\
+Worker nodes also store the list $\mathcal{L}_{n}(vote)$ embedded in each $H_k$ quantity. If selected to be a producer for the next cycle $\mathcal{C}_{n+1}$, a worker can use it to generate the reward allocated to the producers who correctly voted for the accurate ledger state update during the ledger cycle $\mathcal{C}_{n}$.\\
 
 Figure~\ref{fig:cycle} summarises the different phases of the ledger cycle.\\
 
