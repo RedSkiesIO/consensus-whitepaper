@@ -1,4 +1,4 @@
-Different types of accounts  are stored on Catalyst ledger. Namely:
+Different types of accounts are stored on Catalyst ledger. Namely:
 
 \begin{itemize}
 \item Non-confidential user-based accounts, with a balance in KAT tokens that is updated via the validation of non-confidential transactions. The account balance is visible to all.
@@ -9,9 +9,9 @@ Different types of accounts  are stored on Catalyst ledger. Namely:
 An account comprises the following components: 
 
 \begin{itemize}
-\item An address component: a 20-byte address $A_{i}$, which is derived from a public/private key pair \{$Q_{i},k_{i}$\} (where $Q_i= k_{i}G$, $G$ is an EC generator) using a collision-resistant hash function ($\mathcal{H}$): $A_{i} = \mathcal{H}(Q_{i})$. The last 20 bytes of the hash are used to create the address. A prefix is added to distinguish between the different types of accounts.  
-\item An amount component: when non-confidential, the amount is a 8-byte number $v_{i} \in \mathbb{Z}_M$. This represents the account $A_{i}$ balance in KAT tokens (with $M$ a threshold on the number of tokens). When confidential, the amount component is a 32-byte Pedersen Commitment~\cite{confidential} $C_{i} = v_{i}H + b_{i}G$ that hides the balance $v_i$ of the account using a blinding factor $b_{i} \in  \mathbb{Z}_p$ ($p \gg M$).
+\item An address component: a 20-byte address $A_{i}$, which is derived from a public/private key pair \{$Q_{i},k_{i}$\} (where $Q_i= k_{i}G$, $G$ is an EC generator) using a collision-resistant hash function ($\mathcal{H}$): $A_{i} = \mathcal{H}(Q_{i})$. The last 20 bytes of the hash are used to create the address. A prefix is added to distinguish between the different types of accounts.
+\item An amount component: when non-confidential, the amount is a 8-byte number $v_{i} \in \mathbb{Z}_M$. This represents the account $A_{i}$ balance in KAT tokens (with $M$ a threshold on the number of tokens). When confidential, the amount component is a 32-byte Pedersen Commitment~\cite{confidential} $C_{i} = v_{i}H + b_{i}G$ that hides the balance $v_i$ of the account using a blinding factor $b_{i} \in \mathbb{Z}_p$ ($p \gg M$).
 \item A data component: reserved to smart contract-based accounts and used to store data (or a reference to data stored on DFS) that amounts to a maximum of 64 bytes. 
 \end{itemize}
 
-As such, Catalyst ledger state is naturally split into sub-states, or shards, where each shard stores accounts of a given type. A node on Catalyst network may not maintain a copy of all shards but must remain aware of the possible dependencies among shards\footnote{The section discussing sharding techniques applied to Catalyst is under construction.}.%  (see chapter~\ref{Cha:Sha}).\\
+As such, Catalyst ledger state is naturally split into sub-states, or shards, where each shard stores accounts of a given type. A node on Catalyst network may not maintain a copy of all shards but must remain aware of the possible dependencies among shards\footnote{The section discussing sharding techniques applied to Catalyst is under construction.}.%(see chapter~\ref{Cha:Sha}).\\

@@ -1,8 +1,8 @@
-The primary attack of concern for all blockchain and DLT platforms is the subversion of their consensus protocol and is generally referred as a 51\% attack. Such attack is made possible when an entity or group of entities collude to have enough influence on the network to produce a block or ledger state update with invalid transactions, in the attempt to alter the ledger integrity. Depending on the protocol, the influence can be in computing power or number of nodes and exceeds 50\% of the relevant resource.  \\
+The primary attack of concern for all blockchain and DLT platforms is the subversion of their consensus protocol and is generally referred as a 51\% attack. Such attack is made possible when an entity or group of entities collude to have enough influence on the network to produce a block or ledger state update with invalid transactions, in the attempt to alter the ledger integrity. Depending on the protocol, the influence can be in computing power or number of nodes and exceeds 50\% of the relevant resource. \\
 
 An attack could be performed for many reasons aside attempting to steal money from a network, including to discredit or shake trust in a network. A consequence of a successful attack would likely be to reduce token prices. Although there is no tangible proof of this, it could explain why 51\% attacks are not too common. Nevertheless, it remains important to prevent and mitigate the risk of an attack as much as possible.\\
 
-The probability of a 51\% attack ($P_{51}$) typically depends on the algorithm used to produce a valid block or ledger update.When considering PoW-based algorithms, $P_{51}$ can be expressed as a function of the hash rate of network nodes.  Since the consensus-based protocol on the Catalyst network as laid out in section \ref{Cha:CM} does not rely on solving a cryptographic puzzle, the concept of hash rate of nodes involved in the ledger state update is not relevant to quantify the probability or the cost of an attack on Catalyst network. The number of nodes involved in the production of a ledger state update is however relevant, as explained in this section. \\ 
+The probability of a 51\% attack ($P_{51}$) typically depends on the algorithm used to produce a valid block or ledger update.When considering PoW-based algorithms, $P_{51}$ can be expressed as a function of the hash rate of network nodes. Since the consensus-based protocol on the Catalyst network as laid out in section \ref{Cha:CM} does not rely on solving a cryptographic puzzle, the concept of hash rate of nodes involved in the ledger state update is not relevant to quantify the probability or the cost of an attack on Catalyst network. The number of nodes involved in the production of a ledger state update is however relevant, as explained in this section. \\ 
 
 The probability of a successful 51\% attack on Catalyst network implies that a malicious entity (or group of entities) succeeds in controlling more than half the producer nodes selected to produce the ledger state update during a ledger cycle, giving that entity the power to tamper with the ledger state. The probability $P_{51}$ depends on the following parameters:
 \begin{itemize}
@@ -11,12 +11,12 @@ The probability of a successful 51\% attack on Catalyst network implies that a m
 \item $O$ : the number of malicious nodes in the worker pool ($0 \leq O \leq N$). This is a total subset of malicious nodes colluding to perform an attack on the network.
 \item $p$ : the number of malicious nodes in the subset $P$ of producers. ($0 \leq p \leq P$).
 \end{itemize}
-An attack can be considered successful for any value $p \in [p_0,P]$ where $p_0 = P/2 + 1$ which is equivalent to $p > 50\%P$. When $P \approx N$, \textit{i.e.} the number of producers selected during a ledger cycle is very close to the total number of nodes in the worker pool, the absence of a randomness element in the selection of $P$ producers  makes it easy to compute the probability of a successful attack on the network: $P_{51} \approx O/N$. A malicious entity would know exactly when an attack can successfully be performed, that is when $O > N/2$. \\
+An attack can be considered successful for any value $p \in [p_0,P]$ where $p_0 = P/2 + 1$ which is equivalent to $p > 50\%P$. When $P \approx N$, \textit{i.e.} the number of producers selected during a ledger cycle is very close to the total number of nodes in the worker pool, the absence of a randomness element in the selection of $P$ producers makes it easy to compute the probability of a successful attack on the network: $P_{51} \approx O/N$. A malicious entity would know exactly when an attack can successfully be performed, that is when $O > N/2$. \\
 
 When $N \gg P$, $P_{51}$ can there be expressed by the discrete sum:
 \begin{equation}
 \label{eq:1}
-P_{51} =  \sum_{p=p_0}^{P} P_{A}(p)
+P_{51} = \sum_{p=p_0}^{P} P_{A}(p)
 \end{equation}
 where $P_{A}(p)$ represents the probability of having $p$ malicious nodes in the set $P$. When the ratio between the total number of nodes $N$ and the number of nodes $P$ is large ($N > 20\times P$) it can be expressed as follows: 
 \begin{equation}
@@ -59,16 +59,14 @@ Figure \ref{fig:P} shows the probability of a successful control of more than 50
         \label{fig:N2000}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/Prob51_vs_P_N5000_O35_to_45}
-   
+        \includegraphics[width=\textwidth]{Figures/Prob51_vs_P_N5000_O35_to_45} 
         \renewcommand{\thesubfigure}{b}
         \caption{$N = 5000$}
         \label{fig:N5000}
     \end{subfigure}
         \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/Prob51_vs_P_N10000_O35_to_45}
-   
-        \renewcommand{\thesubfigure}{c}
+        \includegraphics[width=\textwidth]{Figures/Prob51_vs_P_N10000_O35_to_45}  
+       \renewcommand{\thesubfigure}{c}
         \caption{$N = 10000$}
         \label{fig:N10000}
     \end{subfigure}

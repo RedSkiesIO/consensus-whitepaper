@@ -1,4 +1,4 @@
-Nodes in the network receive and forward transactions to their peers. In order to prevent spamming attack over the network,  nodes only forward transactions that are considered valid against a validity check list. Before forwarding it to its peers, a peer verifies the transaction against the following list of criteria:
+Nodes in the network receive and forward transactions to their peers. In order to prevent spamming attack over the network, nodes only forward transactions that are considered valid against a validity check list. Before forwarding it to its peers, a peer verifies the transaction against the following list of criteria:
  
 \begin{itemize}
 \item The transaction syntax (aforementioned in \ref{Sec:TStru}) and data structure must be correct.
@@ -14,7 +14,7 @@ For non-confidential transaction $E_i$ must have a total size of 48-byte and 3 c
 For confidential transaction $E_i$ must have a total size of 742-byte and 4 components:
 
 \begin{itemize}
-\item A public key $Q_i$ with a corresponding account address $A_i$ stored on the ledger where the account has an hidden balance (32-byte field).   
+\item A public key $Q_i$ with a corresponding account address $A_i$ stored on the ledger where the account has an hidden balance (32-byte field).
 \item A 32-byte PC $C_i^t$ 
 \item A 672-byte range proof must validate against a new PC built out of the sum of $C_i^t$ and the account balance $C_i$. 
 \end{itemize}

@@ -6,7 +6,7 @@ Transaction entries are used on the Catalyst ledger to represent the transfer of
 \item An amount component that can be a number or a more complex structure and represents the number of tokens spent from or transferred to the address associated with the public key.
 %\item and a fee component that is a number representing the amount of tokens paid as transaction fees. 
 \end{itemize}
-On Catalyst, the number or amount of tokens included in a transaction entry can be positive (when receiving) or negative (when spending). This  choice allows for a) keeping a simple transaction entry structure (there is no need for an extra field to specify the type of transfer embedded in an entry) and b), in the case of confidential asset transfer, an improved anonymity as an observer will be unable to differentiate between a sender and a recipient in a token transfer. \\
+On Catalyst, the number or amount of tokens included in a transaction entry can be positive (when receiving) or negative (when spending). This choice allows for a) keeping a simple transaction entry structure (there is no need for an extra field to specify the type of transfer embedded in an entry) and b), in the case of confidential asset transfer, an improved anonymity as an observer will be unable to differentiate between a sender and a recipient in a token transfer. \\
 
 The public key $Q_i$ in a transaction entry $E_i$ is always a 32-byte element from which one address $A_i$ stored on the ledger can be derived. \\
 
@@ -22,11 +22,11 @@ The amount component of an entry however differs depending on the nature of the 
  The construction of these elements is discussed below. 
 \end{itemize}
 
-Assume that the balance  $v_i$ of the account $A_i$ is initially represented on the ledger by the PC: 
+Assume that the balance $v_i$ of the account $A_i$ is initially represented on the ledger by the PC: 
 \begin{equation}
 C_{i}=(v_i~mod~l_H)H+ (b_i~mod~l_G)G
 \end{equation}
-Where $b_i$ is a blinding factor chosen by the account holder.  The latter wishes to transfer or receive $a_i$ tokens. To obfuscate the amount of tokens transferred in a transaction entry $E_i$, the account holder creates a PC: 
+Where $b_i$ is a blinding factor chosen by the account holder. The latter wishes to transfer or receive $a_i$ tokens. To obfuscate the amount of tokens transferred in a transaction entry $E_i$, the account holder creates a PC: 
 \begin{equation}
 C_i^{t} = (v_i^{t}~mod~l_H)H+ (b_i^{t}~mod~l_G)G
 \end{equation}
@@ -39,13 +39,13 @@ C_{i}'=(v_i'~mod~l_H)H+ (b_i'~mod~l_G)G
 Defined as:
 \begin{center}
 \[
-  C_{i}' = C_i + C_i^{t}\begin{cases}
+C_{i}' = C_i + C_i^{t}\begin{cases}
                v_i' = v_i + v_i^t\\
                b_i' = b_i + b_i^t
             \end{cases}
 \]
 \end{center}
-It represents the commitment of the account balance after the transaction has taken place.  If $a_i<0$, $v_i'H = [v_i + (l_H+a_i)mod~l_H]H = [v_i + a_i]H$. It is only possible to generate a valid range proof associated to $C_{i}'$ if $v_i > a_i$. Note that $v_i$ is necessarily smaller than $M$ as the balance of the account would have been determined by a previous transaction entry, itself including a range proof that $v_i~\in~[0,M]$. As discussed in section~\ref{Sec:ZKP}, a range proof generated using the bulletproof protocol amounts to 672 Bytes.  \\
+It represents the commitment of the account balance after the transaction has taken place. If $a_i<0$, $v_i'H = [v_i + (l_H+a_i)mod~l_H]H = [v_i + a_i]H$. It is only possible to generate a valid range proof associated to $C_{i}'$ if $v_i > a_i$. Note that $v_i$ is necessarily smaller than $M$ as the balance of the account would have been determined by a previous transaction entry, itself including a range proof that $v_i~\in~[0,M]$. As discussed in section~\ref{Sec:ZKP}, a range proof generated using the bulletproof protocol amounts to 672 Bytes. \\
 
 Table~\ref{tab:TrSt} summarises the different components of a transaction and their respective size for the two types of transfer aforementioned. \\
 
@@ -53,9 +53,9 @@ Table~\ref{tab:TrSt} summarises the different components of a transaction and th
 \centering
 \begin{tabular}{ | l | l | l | l | }
     \hline    
-    \multicolumn{3}{| l | }{\textbf{Transaction component}} &   \textbf{Size} \\ \hline \hline
-     \multicolumn{3}{| l | }{Type}  & 4 Bytes \\ \hline
-     \multicolumn{3}{| l | }{Timestamp}  & 4 Bytes \\ \hline
+    \multicolumn{3}{| l | }{\textbf{Transaction component}} & \textbf{Size} \\ \hline \hline
+     \multicolumn{3}{| l | }{Type} & 4 Bytes \\ \hline
+     \multicolumn{3}{| l | }{Timestamp} & 4 Bytes \\ \hline
 
        \multirow{ 4}{*}{Entries ($n>1$)} & \multirow{ 2}{*}{non-confidential entry} & 32-byte public key &  \multirow{ 2}{*}{$n \cdot 40$ Bytes} \\
      \cline{3-3}
@@ -67,9 +67,9 @@ Table~\ref{tab:TrSt} summarises the different components of a transaction and th
    	&   & 32-byte PC &\\ 
      \cline{3-3}
 	& & 672-byte range proof &\\ \hline
-   \multicolumn{3}{| l | }{Aggregated Signature} & 64 Bytes\\  \hline
- \multicolumn{3}{| l | }{Transaction fees} & 8 Bytes \\  \hline   
- \multicolumn{3}{| l | }{Locking Time}  & 4 Bytes \\  \hline   
+   \multicolumn{3}{| l | }{Aggregated Signature} & 64 Bytes\\ \hline
+ \multicolumn{3}{| l | }{Transaction fees} & 8 Bytes \\ \hline 
+ \multicolumn{3}{| l | }{Locking Time} & 4 Bytes \\ \hline
     \end{tabular} \\ 
 \caption{Structure of confidential and non-confidential transactions on Catalyst and size per transaction component.}
 \label{tab:TrSt}

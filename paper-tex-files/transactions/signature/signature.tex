@@ -6,7 +6,7 @@ In blockchains such as Bitcoin and Ethereum, transaction inputs are signed using
  
  Public key recovery is however incompatible with batch validation, \textit{i.e.} it is not possible to recover a set of public keys from an aggregated signature on multiple transaction inputs. As a result the choice of ECDSA-based scheme for Catalyst transaction would not be optimal as a transaction contain a minimum of two entries. A Schnorr-based signature scheme is preferred to enable user to jointly produce a signature using their private keys. A solution recently proposed by Y. Seurin \textit{et al}~\cite{schnorr} also accounts for protection against key-rogue attacks, preventing key malleability to create validate signatures on transaction without knowing the users' private key. We propose a Schnorr-based signature scheme inspired from this recently published work. \\
 
-We define the transaction core message $m$ as a set of $n$ entries $\{E_i\}_{i=1,..,n}$  and additional information $X$ mentioned in the previous section (see table~\ref{tab:TrSt}), excluding the transaction timestamp:
+We define the transaction core message $m$ as a set of $n$ entries $\{E_i\}_{i=1,..,n}$ and additional information $X$ mentioned in the previous section (see table~\ref{tab:TrSt}), excluding the transaction timestamp:
 \begin{center}
 $m = \{E_i\}_{i=1,..,n} + X$ 
 \end{center}
@@ -29,7 +29,7 @@ $\tilde{Q}=\mathcal{H}(L \mid\mid Q_1)\cdot Q_1 + .. + \mathcal{H}(L \mid\mid Q_
 	\item$L$ is the hash of all the public keys used in the transaction expressed as $L=\mathcal{H}(Q_1~||~..~||~Q_n)$
 \end{itemize}
 
-$U_i$ then creates the following partial signature:  
+$U_i$ then creates the following partial signature:
 
 \begin{equation} 
 s_{i} = r_i + e_i\cdot k_i

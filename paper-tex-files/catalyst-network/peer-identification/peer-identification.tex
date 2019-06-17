@@ -3,10 +3,10 @@ Catalyst implements a peer identification protocol. Each node that joins the net
 \begin{itemize}
 \item \textbf{Client ID} - a 2-byte number to differentiate test networks from live network
 \item \textbf{Client Version} - a 2-byte version number of code running on peer 
-\item \textbf{IP} -  a 16-byte IP address, IPv4 or IPv6
+\item \textbf{IP} - a 16-byte IP address, IPv4 or IPv6
 \item \textbf{Port} - a 2 byte port number 
 \item \textbf{Public Key} - a 20-byte public key
-\end{itemize}  
+\end{itemize}
 
 Each peer identifier on the network should be unique. The peer identification protocol allows the Catalyst network to prevent Sybil attacks, as discussed in \ref{Sec:Reg}, and to assign a reputation to the peer identifier to track badly performing nodes. The reputation of a node is determined by how its peer identifier is formed. To maintain a good reputation, nodes need to respond correctly to requests from their peers. For example a peer can send the IP:Port number chunk of a node, and the corresponding node is required to respond with the associated public key. The node reputation decreases when providing the wrong public key or not being available while a correct response is rewarded by an increase in reputation. Multiple nodes joining on the same IP space will see their reputation decrease. \\
 

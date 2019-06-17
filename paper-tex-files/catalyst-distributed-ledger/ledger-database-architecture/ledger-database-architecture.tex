@@ -10,5 +10,5 @@ At the top level lies the current state of the ledger (CLS), \textit{i.e.} the d
 
 The middle level comprises the recent ledger state updates, that is a set of the last recent ledger state updates accepted by producers and broadcast across the network. Historical data, or old ledger state updates, represent the bottom level. Both middle and bottom levels are maintained by Catalyst Distributed File System (DFS) module. The top and middle levels sits on every node on the network and are thus immediately accessible. On the other hand the bottom level is maintained by some but not necessarily all nodes in the network. Long term data is thus available with a short delay which constitutes a small trade-off for a compact ledger database maintained by every node.\\
 
-Figure~\ref{fig:db} also shows the smart contracts and dApps  stored on a database unit separate from the account balances and communicate with DFS for the access, production and storage of files. Technical specificities around smart contracts and dApps are discussed in a paper soon to be released.  
+Figure~\ref{fig:db} also shows the smart contracts and dApps stored on a database unit separate from the account balances and communicate with DFS for the access, production and storage of files. Technical specificities around smart contracts and dApps are discussed in a paper soon to be released.
 
