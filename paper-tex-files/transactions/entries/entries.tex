@@ -3,10 +3,10 @@ Transaction entries are used on the Catalyst ledger to represent the transfer of
  A transaction entry typically consists of two components: 
  \begin{itemize}
 \item A public key, from which the address of an account stored on the ledger is derived.
-\item An amount component that can be a number or a more complex structure and represents the number of tokens spent from or transferred to the address associated with the public key.
+\item An amount component that can be a number (when the transaction is non-confidential) or a Pedersen commitment (when the transaction is confidential) and represents the number of tokens spent from or transferred to the address associated with the public key.
 %\item and a fee component that is a number representing the amount of tokens paid as transaction fees. 
 \end{itemize}
-On Catalyst, the number or amount of tokens included in a transaction entry can be positive (when receiving) or negative (when spending). This choice allows for a) keeping a simple transaction entry structure (there is no need for an extra field to specify the type of transfer embedded in an entry) and b), in the case of confidential asset transfer, an improved anonymity as an observer will be unable to differentiate between a sender and a recipient in a token transfer. \\
+On Catalyst, the amount or number of tokens included in a transaction entry can be positive (when receiving) or negative (when spending). This choice allows for a) keeping a simple transaction entry structure (there is no need for an extra field to specify the type of transfer embedded in an entry) and b), in the case of confidential asset transfer, an improved anonymity as an observer will be unable to differentiate between a sender and a recipient in a token transfer. \\
 
 The public key $Q_i$ in a transaction entry $E_i$ is always a 32-byte element from which one address $A_i$ stored on the ledger can be derived. \\
 
