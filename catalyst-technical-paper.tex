@@ -9,6 +9,8 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{titlesec}	
+\usepackage{scrextend}
+\usepackage{titlepic}
 \usepackage{float}
 \usepackage{wrapfig}
 \usepackage{lscape}
@@ -21,13 +23,13 @@
 \usepackage{array,multirow,multicol}
 
 
-
 \usepackage[dvipsnames]{xcolor}
 \definecolor{bulg}{rgb}{0.5, 0.0, 0.13}
 \captionsetup{font=scriptsize}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+
 
 \lfoot{\textcopyright Atlas City Global Limited}
 \rfoot{Private \& Confidential}
@@ -47,22 +49,46 @@
 \setcounter{biburlucpenalty}{9000}
 \setcounter{biburllcpenalty}{9000}
 
+
+
+
 \hypersetup{
   urlcolor   = blue
 }
 
+
+
+
+
 \begin{document}
 
-\parindent=0in
+\begin{titlepage}
 
-\title{Catalyst Distributed Operating System Protocol}
-\author{Dr. Pauline Bernat, Joseph Kearney and Francesca Sage-Ling}
-\maketitle 
+\par
+\raisebox{-.5\height}{\includegraphics[width=7.5cm]{figures/atlas-logo}}%
+\hfill
+\raisebox{-.5\height}{\includegraphics[width=7.5cm]{figures/catalyst-logo}}%
+\par
 
+\begin{center}
+\vspace*{5cm}
+\Huge
+\textbf{Catalyst Distributed Operating System Protocol}
+
+\Large
+\vspace{2.5cm}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+Dr. Pauline Bernat\footnote{pauline.bernat@atlascity.io}, Joseph Kearney\footnote{joseph.kearney@atlascity.io} and Francesca Sage-Ling\footnote{fran.sl@atlascity.io}
+\end{center}
+\end{titlepage}
 %\begin{abstract}
 %\input{paper-tex-files/abstract/abstract}
 %\end{abstract}
 %\newpage
+
+
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
 
 \chapter*{Abstract}
 \input{paper-tex-files/abstract/abstract}
@@ -104,7 +130,7 @@
 
 \input{paper-tex-files/technical-specification/zk-proofs/zk-proofs}
 
-\section{Tokens name and units}\label{Sec:Tok}
+\section{Tokens and Units}\label{Sec:Tok}
 
 \input{paper-tex-files/technical-specification/tokens/tokens}
 
@@ -132,11 +158,14 @@
 \section{Peer Role Types}\label{Sec:PRT}
 \input{paper-tex-files/catalyst-network/node-roles/node-roles}
 
+\begin{comment}
 \subsection{Proof of Computing Capabilities}\label{Sec:Pcc}
 
 \input{paper-tex-files/catalyst-network/proof-computing-capabilities/proof-computing-capabilities}
+\end{comment}
 
-\subsection{Nodes Registration}\label{Sec:Reg}
+
+\section{Nodes Registration}\label{Sec:Reg}
 
 \input{paper-tex-files/catalyst-network/node-role-assignment/node-role-assignment}
 
