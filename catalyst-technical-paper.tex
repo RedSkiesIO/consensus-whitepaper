@@ -50,10 +50,14 @@
 \setcounter{biburllcpenalty}{9000}
 
 
+\definecolor{catalystDarkBlue}{RGB}{22,68,91}
+\definecolor{catalystLightBlue}{RGB}{22,172,159}
 
 
 \hypersetup{
-  urlcolor   = blue
+  urlcolor   = catalystLightBlue ,
+  citecolor = catalystLightBlue ,
+  linkcolor = catalystDarkBlue
 }
 
 
@@ -65,20 +69,28 @@
 \begin{titlepage}
 
 \par
-\raisebox{-.5\height}{\includegraphics[width=7.5cm]{figures/atlas-logo}}%
+%\raisebox{-.5\height}{\includegraphics[width=7.5cm]{figures/atlas-logo}}%
 \hfill
-\raisebox{-.5\height}{\includegraphics[width=7.5cm]{figures/catalyst-logo}}%
+\raisebox{-.7\height}{\includegraphics[width=9.5cm]{figures/catalyst-logo}}%
 \par
 
 \begin{center}
-\vspace*{5cm}
-\Huge
-\textbf{Catalyst Distributed Operating System Protocol}
+\vspace*{4cm}
+\LARGE
+\textbf{Catalyst Distributed Operating System:}
+\vspace{0.5cm}
 
-\Large
-\vspace{2.5cm}
+\Large{Catalyst Core Protocol}
+
+\large
+\vspace{1.5cm}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-Dr. Pauline Bernat\footnote{pauline.bernat@atlascity.io}, Joseph Kearney\footnote{joseph.kearney@atlascity.io} and Francesca Sage-Ling\footnote{fran.sl@atlascity.io}
+Dr. Pauline Bernat\footnote{pauline.bernat@atlascity.io}, Joseph Kearney\footnote{joseph.kearney@atlascity.io} and Francesca Sage-Ling\footnote{fran.sl@atlascity.io}\\
+\vspace{1.5cm}
+Version 1.0
+ \\
+\vspace{0.5cm}
+\textit{Last edited: \today}
 \end{center}
 \end{titlepage}
 %\begin{abstract}
@@ -139,7 +151,7 @@ Dr. Pauline Bernat\footnote{pauline.bernat@atlascity.io}, Joseph Kearney\footnot
 %Network Access Chapter
 
 
-\chapter{Peer-to-peer Catalyst Network} \label{Cha:NAPI}
+\chapter{Peer-to-Peer Catalyst Network} \label{Cha:NAPI}
 
 \input{paper-tex-files/catalyst-network/catalyst-network}
 
