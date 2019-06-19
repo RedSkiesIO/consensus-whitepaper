@@ -26,7 +26,7 @@ p \end{array} \right)}^\text{A}
 \overbrace{\left( \begin{array}{c} N - O \\ P - p \end{array} \right)}^\text{B}}{\underbrace{\left( \begin{array}{c} N \\
 P \end{array} \right)}_\text{C}}
 \end{equation}
-$A$ represents the number of possible combinations for choosing $p$ nodes from $O$ malicious nodes. $B$ represents the number of possible combinations for choosing good (non-malicious) nodes for the remaining $N-0$ nodes in the worker pool. Finally, $C$ corresponds to the number of available combinations for choosing $P$ nodes from the pool of $N$ nodes.\\
+$A$ represents the number of possible combinations for choosing $p$ nodes from $O$ malicious nodes. $B$ represents the number of possible combinations for choosing good (non-malicious) nodes for the remaining $N-O$ nodes in the worker pool. Finally, $C$ corresponds to the number of available combinations for choosing $P$ nodes from the pool of $N$ nodes.\\
 \\
 In equation \ref{eq:2}, $P_A(p)$ is the probability mass function of a hypergeometric distribution over the set of parameters $\{N,O,P\}$. Note that such expression is valid for $max(0,O+P-N) \leq p \leq min(O,P)$. \\
 
@@ -44,10 +44,13 @@ As explained in section~\ref{Sec:Reg}, prior to joining the worker pool, nodes a
 
 When $N \gg P$ the probability of a successful attack can therefore be estimated using the cumulative hypergeometric distribution function (CDF) for $p \in [p_0,P]$. In this paper, we provide probability estimate obtained using $scipy.stats$ Python library. The graphs presented are obtained using $matplotlib.pyplot$ library. Rather than computing the CDF, the probability measurements are obtained using the survival probability (SDF), which is the inverse of CDF but is known to provide more accurate results\footnote{See https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.stats.hypergeom.html for more details.}. \\
 
-As an example, assume a rather large number of nodes in the worker pool, $N = 20,000$, out of which $5\%$ are selected as producers for a given cycle ($P = 1,000$). 
-Further assume a ratio $O/N=20\%$, \textit{e.g.} $1$ every $5$ nodes in the worker pool is controlled by a malicious entity ($O=4000$). The probability of a successful attack is calculated using the SDF of an hypergeometric distribution using these set of parameters and amounts to: $P_51 = 1-SDF(20000,4000,1000) \approx 10^{-9}\%$. For the same set $(N,P)$, the probability of a successful attack reaches $0.04\%$ for $S=45\%$ of malicious nodes in the worker pool. 
+As an example, assume a rather large number of nodes in the worker pool, $N = 20,000$, out of which $5\%$ are selected as producers for a given cycle ($P = 1,000$). \\
+
+Further assume a ratio $O/N=20\%$, \textit{e.g.} $1$ every $5$ nodes in the worker pool is controlled by a malicious entity ($O=4000$). The probability of a successful attack is calculated using the SDF of an hypergeometric distribution using these set of parameters and amounts to: $P_51 = 1-SDF(20000,4000,1000) \approx 10^{-9}\%$. For the same set $(N,P)$, the probability of a successful attack reaches $0.04\%$ for $S=45\%$ of malicious nodes in the worker pool. \\
 
 Figure \ref{fig:P} shows the probability of a successful control of more than 50\% of the producers as a function of the number of producers for four different worker pool sizes and two attack scenarios: when a malicious entity controls $O/N = 45\%$ of the worker nodes in blue, and in orange when a malicious controls $O/N = 35\%$ of the worker nodes in blue. For $N=20000$, the probability remains below $10^{-9}$ if $P < \approx 4000$ while for a smaller worker pool size ($N=5000$), the ratio $P/N$ must be at close to 50\% to prevent a successful control of more than 50\% of the producers. 
+
+\newpage
 
 \begin{figure}[H]
 \centering
