@@ -164,9 +164,9 @@ During a period of time $\Delta t_{s0} < \Delta t_{s}$, $P_j$ executes the follo
  $\mathcal{H}(\Delta L_n) = max[unique(\mathcal{H}(LSU_k))~\forall~k\in\{U_j\}]$ and the associated number of votes collected: $U^{maj} = count[(\mathcal{H}(LSU_k) = \mathcal{H}(\Delta L_n))~\forall~k\in\{U_j\}]$ and verifies that $U^{maj}> U_{threshold}$.
 \item $P_j$ creates a new list $\mathcal{L}_{n}(vote)$ and appends to $\mathcal{L}_{n}(vote)$ the identifier of a producer included in the list $\mathcal{L}_{k}(vote)$ of a vote $v_k$ satisfying $\mathcal{H}(LSU_k) = \mathcal{H}(\Delta L_n)$ if and only if the identifier is included in at least $C_n/2$ lists $\{\mathcal{L}_{k}(vote)\}$ associated to a vote $v_{k}$ satisfying $\mathcal{H}(LSU_k) = \mathcal{H}(\Delta L_n)$. Note that $C_n$ can be easily computed as it corresponds to the number of identifier of producers who correctly computed the ledger state update and are therefore included in $\mathcal{L}_{n}(prod)$.
 \item $P_j$ then creates the following quantities:
-\begin{equation}
-\label{eq:Hj}
+\begin{equation} 
 \fbox{$\mathbf{H_{j} = \mathcal{H}(\Delta L_n)~||~\#(\mathcal{L}_{n}(vote))~||~Id_j}$}
+\label{eq:Hj}
 \end{equation}
 \item The producer then broadcasts $H_j$ to the network.% Worker nodes, as well as DFS nodes collect the quantities $\{H_k\}_{\forall~k\in\{P\}}$. %Upon receiving individuals quantities, workers store $\#(\mathcal{L}_{n}(vote))$ in their mempool. 
 \end{enumerate}

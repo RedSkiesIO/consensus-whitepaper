@@ -1,4 +1,4 @@
-\textbf{Account (definition types)} – There are three types of accounts on the Catalyst network. The first is non-confidential accounts, within which the users public key and their account balance is held. This Account balance is readable to anyone. The second type are confidential accounts. Within which the public key is held, along with the amount, which is obfuscated using a blinding factor, it is held in the form of a commitment. The third are smart contract accounts. \\
+\textbf{Account (definition and types)} – A digital account on Catalyst is a record of KAT tokens held by an entity (individual(s) or device(s)) and defined by a digital address associated to a public key, a token balance and an account inertia charaasterise the acccount activity on the network.  There are three types of accounts stored on Catalyst ledger: non-confidential accounts within which the account balance is readable to anyone, confidential accounts within which the amount is obfuscated and held in the form of a commitment, and smart contract-based accounts. \\
 		
 \textbf{Account inertia} – Account inertia refers to the activity of an account. An account with low inertia is one that is frequently utilising the network. An account with high inertia is one that is retaining tokens but not creating work for the network. \\
 
@@ -8,27 +8,27 @@
 
 \textbf{Consensus Mechanism} – Consensus is a method of reaching agreement on a set of proposed changes submitted by users during a period of time. This changes the state of the ledger to reflect these agreed changes. Consensus on Catalyst takes a different approach, it uses a collaborative approach among nodes to generate a correct update to the ledger.\\
 
-\textbf{dApp} – dApp refers to a Distributed Application and describes an application running on multiple nodes simultaneously with the outputs fed into the consensus mechanism to ensure the network agrees on the result.\\
+\textbf{dApp} – dApp refers to a distributed Application and describes an application running on multiple nodes simultaneously with the outputs fed into the consensus mechanism to ensure the network agrees on the result.\\
 
 \textbf{Distributed File System (DFS)} – This is a storage mechanism, within which there is no single point of storage rather an entire network. Allows files to be stored in an efficient and distributed manner. DFS is used to store files as well as historical ledger state updates. DFS is maintained by all nodes on the network. \\
 
 \textbf{Distributed Ledger Technology (DLT)} – All blockchains are distributed ledgers, not all distributed ledgers are blockchains. It can be considered a database where there must be no central source of storage. Catalyst uses a ledger-based system where updates are made at each ledger cycle. These updates are used to change the overall state of the ledger. \\
 
-\textbf{KAT} – A medium of exchange used on Catalyst Network, enabling users to perform actions on the ledger such as accessing services provided on the network or storing and retrieving files. \\
+\textbf{KAT tokens} – A medium of exchange used on Catalyst Network, enabling users to perform actions on the ledger such as accessing services provided on the network or storing and retrieving files. \\
 
 \textbf{Ledger Cycle} – A fixed period of time after which the ledger state is updated using a consensus drawn by the producers. It is comparable to the block time in traditional blockchain. \\
 
-\textbf{Node} – A node is a device connected to the other nodes (its peers) on a peer-to-peer network. A node could be a physical device, like a single-board computer, or running in a virtual machine or containers, such as Docker. \\
+\textbf{Ledger Partition} - A ledger partition is a database storing accounts of a given type: confidential, non-confidential or smart-contract based accounts. \\
 
-\textbf{Partition} - Partitioning divides the Catalyst into its different account types. One partition will hold Confidential accounts and another will hold Non-Confidential accounts. There will also be a partition for smart contract based accounts. \\
+\textbf{Ledger Shard} - A ledger shard is an ensemble of accounts stored on a ledger partition and defined  by an account inertia lying within a certain range of values. The set of accounts defining a shard changes over time as the accounts inertia evolves, based on their activity on the network. \\
+
+\textbf{Node} – A node is a device connected to the other nodes (its peers) on a peer-to-peer network. A node could be a physical device, like a single-board computer, or running in a virtual machine or containers, such as Docker. \\
 
 \textbf{Pedersen Commitment} - The use of a blinding factor to create a commitment that obfuscates the amount. The use of math on elliptic curves allows the user to prove no coins were created or destroyed. \\
 
 \textbf{Producers} - The group of peers that have been selected to perform management work on the ledger for a specific ledger cycle. These producers collect new tokens as reward for the work they performed. \\
 
 \textbf{Range Proof} – Range proofs are used to determine the validity of a hidden value. The range proof allows the user to demonstrate unequivocally that the value being declared is within a specified range, without revealing the actual amount. \\
-
-\textbf{Sharding} - Sharding allows the division of effort used for producing a ledger state update, thereby allowing more transactions to be processed. Each set of producers for a shard will only be required to process the transactions for accounts on that specific shard. Catalyst can thereby scale with network size. Sharding on Catalyst is performed on each partition. Which shard a specific account belongs to is determined by its account inertia. \\
 
 \textbf{Smart Contract} – Smart contracts are computer programs that define sets of rules and requirements and are deployed on a blockchain or distributed ledger. Such program can be triggered by transactions or messages generated by other codes, and/or once certain requirements have been fulfilled. \\
 
@@ -42,4 +42,4 @@
 
 \textbf{Worker Queue} - A queue of all the nodes that have declared themselves ready and capable of performing work for the ledger, yet have not been granted a worker pass. The worker pass allows peers to move from the work queue to the worker pool\\
 
-\textbf{51\% attack} – 51\% attack is the primary attack of concern for all blockchains. It can be described as where a malicious user or group of users collude together to control more than 50\% of the nodes selected to produce the correct update of the ledger for a cycle. From there they can perform malicious activities e.g. spend their tokens twice. \\
+%\textbf{51\% attack} – 51\% attack is the primary attack of concern for all blockchains. It can be described as where a malicious user or group of users collude together to control more than 50\% of the nodes selected to produce the correct update of the ledger for a cycle. From there they can perform malicious activities e.g. spend their tokens twice. \\
