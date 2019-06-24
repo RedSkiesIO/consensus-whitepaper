@@ -17,101 +17,13 @@ Each shard in a partition thus comprises accounts that have similar level of act
 The global ledger state update generated during a ledger cycle thus comprise a set of ledger shard state update. Producers selected in the worker pool of a shard to generate the ledger shard state update can reach consensus following the consensus-based protocol described in the chapter~\ref{Cha:CM}. However, given that a transaction may embed a transfer of tokens between accounts stored on different shards, there needs to be a mechanism to ensure that any transfer, say from account $A$ to $B$, partially included the state update of the shard storing $A$ is also included in the state update of the shard storing $B$. Although each producer pool may reach consensus on the correct shard state update, a safeguard needs to be put in place to ensure that the global ledger state update does not destroy existing tokens nor create tokens outside the scope of the token injection mechanism. To that end, this section describes a new phase followed by the producers during a ledger cycle that take place during the synchronisation phase and ensure that any transaction is properly included in the state update of the different shards storing the accounts involved in said transaction.  Additional steps taken during the earlier ledger cycle phases are also described.
 
 \section{Protocol in a Shard-based Ledger}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
-During the construction phase described in chapter~\ref{Cha:CM}, a producer $P_j$ computes a quantity $L_E^f$ that lists the transaction entries included in the transactions collected by producer during the period of time [$t_{n-1,0} - \Delta t_{freeze}, t_{n,0}$]. In a shard-based ledger, the producer $P_j$ is now a member of the producer pool tasked with updating the state of a ledger shard $\mathcal{P}_w$ defined by a subset $\mathcal{M}_w$ of accounts. As such, $P_j$ does not store all $m_{n-1}$ transactions issued during the ledger cycle $\mathcal{C}_{n-1}$ in its mempool but instead only collects the subset $m_{n-1,w}$ of transactions that contain at least one entry involving  an account included in the subset $\mathcal{M}_w$. Some of these transactions will include entries that involve accounts stored on other shards (of the same ledger partition). Let $\mathcal{E}^{in}_w$ be the set of transaction entries involving an account included in $\mathcal{M}_w$ and $\mathcal{E}^{out}_w$ the set of transaction entries involving  an account not included i $\mathcal{M}_w$ such that $\mathcal{E}^{in}_w \cup \mathcal{E}^{out}_w$ comprises the $n_i$ entries $\{E_\alpha\}_{\alpha=1,..,n_i}$ of each transaction $Tx_i~\forall i \in  [1, m_{n-1,w}]$.\\
-=======
-=======
-=======
-=======
-
-During the construction phase described in chapter~\ref{Cha:CM}, a producer $P_j$ computes a quantity $L_E^f$ that lists the transaction entries included in the transactions collected by producer during the period of time [$t_{n-1,0} - \Delta t_{freeze}, t_{n,0}$]. In a shard-based ledger, the producer $P_j$ is now a member of the producer pool tasked with updating the state of a ledger shard $\mathcal{P}_w$ defined a subset $\mathcal{M}_w$ of accounts. As such, $P_j$ does not store all $m_{n-1}$ transactions issued during the ledger cycle $\mathcal{C}_{n-1}$ in its mempool but only collects the subset $m_{n-1,w}$ of transactions that contain at least one entry involving  an account included in the subset $\mathcal{M}_w$. Some of these transactions will include entries that involve accounts stored on other shards (of the same ledger partition). Let $\mathcal{E}^{in}_w$ be the set of transaction entries involving an account included in the subset $\mathcal{M}_w$ and $\mathcal{E}^{out}_w$ the set of transaction entries involving  an account not included in the subset $\mathcal{M}_w$ such that $\mathcal{E}^{in}_w \cup \mathcal{E}^{out}_w$ comprises the $n_i$ entries $\{E_\alpha\}_{\alpha=1,..,n_i}$ of each transaction $Tx_i~\forall i \in  [1, m_{n-1,w}]$.\\
-
-The producer $P_j$ executes the following steps to create $L_E^f$:
-\begin{itemize}
-\item For each transaction entry $E_\alpha$ in $\mathcal{E}^{in}_w$, $P_j$ creates a corresponding hash variable: 
-\begin{center}
-$O_\alpha = \mathcal{H}[E_\alpha~||~s]$
-\end{center}
-Each pair ($E_\alpha,O_\alpha$) is added to a list $L^s_E$. Steps (1) and (2) are repeated until all transactions have been processed.
-\item	$P_j$ then creates a new list $L^f_E$ using the $M_w=\sum_{i=1}^{\mathcal{E}^{in}_w}n_i$ transaction entries listed in $L^s_E$ such that the transaction entries in $L^f_E = \{E_\beta\}_{\beta=1,...,M_w}$ are sorted following a lexicographical order based on their associated hash variable: $O_1 < O_2 < ... < O_\beta < ... < O_{M_w}$. 
-\item $P_j$ also creates a hash table $HT_w$ using the entries in $\mathcal{E}^{in}_w$.
-\end{itemize}
-
-
-
-
-
->>>>>>> Stashed changes
-
-During the construction phase described in chapter~\ref{Cha:CM}, a producer $P_j$ computes a quantity $L_E^f$ that lists the transaction entries included in the transactions collected by producer during the period of time [$t_{n-1,0} - \Delta t_{freeze}, t_{n,0}$]. In a shard-based ledger, the producer $P_j$ is now a member of the producer pool tasked with updating the state of a ledger shard $\mathcal{P}_w$ defined a subset $\mathcal{M}_w$ of accounts. As such, $P_j$ does not store all $m_{n-1}$ transactions issued during the ledger cycle $\mathcal{C}_{n-1}$ in its mempool but only collects the subset $m_{n-1,w}$ of transactions that contain at least one entry involving  an account included in the subset $\mathcal{M}_w$. Some of these transactions will include entries that involve accounts stored on other shards (of the same ledger partition). Let $\mathcal{E}^{in}_w$ be the set of transaction entries involving an account included in the subset $\mathcal{M}_w$ and $\mathcal{E}^{out}_w$ the set of transaction entries involving  an account not included in the subset $\mathcal{M}_w$ such that $\mathcal{E}^{in}_w \cup \mathcal{E}^{out}_w$ comprises the $n_i$ entries $\{E_\alpha\}_{\alpha=1,..,n_i}$ of each transaction $Tx_i~\forall i \in  [1, m_{n-1,w}]$.\\
-
-The producer $P_j$ executes the following steps to create $L_E^f$:
-\begin{itemize}
-\item For each transaction entry $E_\alpha$ in $\mathcal{E}^{in}_w$, $P_j$ creates a corresponding hash variable: 
-\begin{center}
-$O_\alpha = \mathcal{H}[E_\alpha~||~s]$
-\end{center}
-Each pair ($E_\alpha,O_\alpha$) is added to a list $L^s_E$. Steps (1) and (2) are repeated until all transactions have been processed.
-\item	$P_j$ then creates a new list $L^f_E$ using the $M_w=\sum_{i=1}^{\mathcal{E}^{in}_w}n_i$ transaction entries listed in $L^s_E$ such that the transaction entries in $L^f_E = \{E_\beta\}_{\beta=1,...,M_w}$ are sorted following a lexicographical order based on their associated hash variable: $O_1 < O_2 < ... < O_\beta < ... < O_{M_w}$. 
-\item $P_j$ also creates a hash table $HT_w$ using the entries in $\mathcal{E}^{in}_w$.
-\end{itemize}
-
-<<<<<<< Updated upstream
-
-
-
-
->>>>>>> Stashed changes
-
-During the construction phase described in chapter~\ref{Cha:CM}, a producer $P_j$ computes a quantity $L_E^f$ that lists the transaction entries included in the transactions collected by producer during the period of time [$t_{n-1,0} - \Delta t_{freeze}, t_{n,0}$]. In a shard-based ledger, the producer $P_j$ is now a member of the producer pool tasked with updating the state of a ledger shard $\mathcal{P}_w$ defined a subset $\mathcal{M}_w$ of accounts. As such, $P_j$ does not store all $m_{n-1}$ transactions issued during the ledger cycle $\mathcal{C}_{n-1}$ in its mempool but only collects the subset $m_{n-1,w}$ of transactions that contain at least one entry involving  an account included in the subset $\mathcal{M}_w$. Some of these transactions will include entries that involve accounts stored on other shards (of the same ledger partition). Let $\mathcal{E}^{in}_w$ be the set of transaction entries involving an account included in the subset $\mathcal{M}_w$ and $\mathcal{E}^{out}_w$ the set of transaction entries involving  an account not included in the subset $\mathcal{M}_w$ such that $\mathcal{E}^{in}_w \cup \mathcal{E}^{out}_w$ comprises the $n_i$ entries $\{E_\alpha\}_{\alpha=1,..,n_i}$ of each transaction $Tx_i~\forall i \in  [1, m_{n-1,w}]$.\\
-
-The producer $P_j$ executes the following steps to create $L_E^f$:
-\begin{itemize}
-\item For each transaction entry $E_\alpha$ in $\mathcal{E}^{in}_w$, $P_j$ creates a corresponding hash variable: 
-\begin{center}
-$O_\alpha = \mathcal{H}[E_\alpha~||~s]$
-\end{center}
-Each pair ($E_\alpha,O_\alpha$) is added to a list $L^s_E$. Steps (1) and (2) are repeated until all transactions have been processed.
-\item	$P_j$ then creates a new list $L^f_E$ using the $M_w=\sum_{i=1}^{\mathcal{E}^{in}_w}n_i$ transaction entries listed in $L^s_E$ such that the transaction entries in $L^f_E = \{E_\beta\}_{\beta=1,...,M_w}$ are sorted following a lexicographical order based on their associated hash variable: $O_1 < O_2 < ... < O_\beta < ... < O_{M_w}$. 
-\item $P_j$ also creates a hash table $HT_w$ using the entries in $\mathcal{E}^{in}_w$.
-\end{itemize}
-
-<<<<<<< Updated upstream
-
-
-
-
->>>>>>> Stashed changes
-
-During the construction phase described in chapter~\ref{Cha:CM}, a producer $P_j$ computes a quantity $L_E^f$ that lists the transaction entries included in the transactions collected by producer during the period of time [$t_{n-1,0} - \Delta t_{freeze}, t_{n,0}$]. In a shard-based ledger, the producer $P_j$ is now a member of the producer pool tasked with updating the state of a ledger shard $\mathcal{P}_w$ defined a subset $\mathcal{M}_w$ of accounts. As such, $P_j$ does not store all $m_{n-1}$ transactions issued during the ledger cycle $\mathcal{C}_{n-1}$ in its mempool but only collects the subset $m_{n-1,w}$ of transactions that contain at least one entry involving  an account included in the subset $\mathcal{M}_w$. Some of these transactions will include entries that involve accounts stored on other shards (of the same ledger partition). Let $\mathcal{E}^{in}_w$ be the set of transaction entries involving an account included in the subset $\mathcal{M}_w$ and $\mathcal{E}^{out}_w$ the set of transaction entries involving  an account not included in the subset $\mathcal{M}_w$ such that $\mathcal{E}^{in}_w \cup \mathcal{E}^{out}_w$ comprises the $n_i$ entries $\{E_\alpha\}_{\alpha=1,..,n_i}$ of each transaction $Tx_i~\forall i \in  [1, m_{n-1,w}]$.\\
-
-The producer $P_j$ executes the following steps to create $L_E^f$:
-\begin{itemize}
-\item For each transaction entry $E_\alpha$ in $\mathcal{E}^{in}_w$, $P_j$ creates a corresponding hash variable: 
-\begin{center}
-$O_\alpha = \mathcal{H}[E_\alpha~||~s]$
-\end{center}
-Each pair ($E_\alpha,O_\alpha$) is added to a list $L^s_E$. Steps (1) and (2) are repeated until all transactions have been processed.
-\item	$P_j$ then creates a new list $L^f_E$ using the $M_w=\sum_{i=1}^{\mathcal{E}^{in}_w}n_i$ transaction entries listed in $L^s_E$ such that the transaction entries in $L^f_E = \{E_\beta\}_{\beta=1,...,M_w}$ are sorted following a lexicographical order based on their associated hash variable: $O_1 < O_2 < ... < O_\beta < ... < O_{M_w}$. 
-\item $P_j$ also creates a hash table $HT_w$ using the entries in $\mathcal{E}^{in}_w$.
-\end{itemize}
-
-<<<<<<< Updated upstream
-
-
-
-
->>>>>>> Stashed changes
+During the construction phase described in chapter~\ref{Cha:CM}, a producer $P_j$ computes a quantity $L_E^f$ that lists the transaction entries included in the transactions collected by producer during the period of time [$t_{n-1,0} - \Delta t_{freeze}, t_{n,0}$]. In a shard-based ledger, the producer $P_j$ is now a member of the producer pool tasked with updating the state of a ledger shard $\mathcal{P}_w$ defined by a subset $\mathcal{M}_w$ of accounts. As such, $P_j$ does not store all $m_{n-1}$ transactions issued during the ledger cycle $\mathcal{C}_{n-1}$ in its mempool but instead only collects the subset $m_{n-1,w}$ of transactions that contain at least one entry involving  an account included in the subset $\mathcal{M}_w$. Some of these transactions will include entries that involve accounts stored on other shards (of the same ledger partition). Let $\mathcal{E}^{in}_w$ be the set of transaction entries involving an account included in $\mathcal{M}_w$ and $\mathcal{E}^{out}_w$ the set of transaction entries involving  an account not included in $\mathcal{M}_w$ such that $\mathcal{E}^{in}_w \cup \mathcal{E}^{out}_w$ comprises the $n_i$ entries $\{E_\alpha\}_{\alpha=1,..,n_i}$ of each transaction $Tx_i~\forall i \in  [1, m_{n-1,w}]$.\\
 
 In chapter~\ref{Cha:CM}, a simple pool of producers agreed on the correct ledger state update $\Delta L_n$ built during the cycle $\mathcal{C}_{n}$. In the context of a shard-based ledger, the producers tasked with updating the state of a ledger shard $\mathcal{P}_w$ work collaboratively to generate the ledger shard state update $\Delta L^w_n$. The set of shard state updates constitutes the global ledger state update: $\Delta L_n = \Delta L^1_n + ... + \Delta L^k_n + ...+ \Delta L^s_n$.\\ 
 
 The $P$ producers responsible for the ledger shard $\mathcal{P}_w$ follow a protocol similar to that described in \ref{Cha:CM}. The differences, explained below.....
 
-<<<<<<< Updated upstream
 The producer $P_j$ executes the following steps to create $L_E^f$:
 \begin{itemize}
 \item For each transaction entry $E_\alpha$ in $\mathcal{E}^{in}_w$, $P_j$ creates a corresponding hash variable: 
@@ -154,15 +66,6 @@ During the synchronisation phase, a producer $P_j$ computes a quantity $\mathbf{
 It includes the hash of the identifier list $\mathcal{L}^{w}_{n}(vote)$ of producers who voted correctly on the ledger shard state update $\mathcal{P}_w$.
 It also includes the hast tree $HT^{maj}$ corresponding to the set of transaction entries $\mathcal{E}^{in}_w$ included in $\Delta L^w_n$. 
 
-
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 \section{Partitions Interdependencies}
 
 Ledger partitions (partitions storing non-confidential accounts, confidential accounts,...)
