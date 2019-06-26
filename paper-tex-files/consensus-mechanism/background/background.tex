@@ -25,7 +25,8 @@ Catalyst consensus mechanism is not based on a competitive process. Instead, the
 
 Nodes who contribute to maintaining the ledger state are called producers, rather than miners. Indeed, producers do not solve a computationally hard problem, but instead validate the transactions broadcast to the network and use these to collaboratively build (produce) a ledger state update. \\
 
-In the following sections we assume that the ledger is composed of one single partition comprising a fixed set of accounts. The implementation of sharding techniques are discussed in a chapter~\ref{Cha:Sha}. 
+In the following sections we assume that the ledger is composed of one single partition comprising a fixed set of accounts. 
+%The implementation of sharding techniques are discussed in a chapter~\ref{Cha:Sha}. 
 We therefore consider one single worker pool and one subset of producer nodes selected per ledger cycle. \\
 
 A ledger cycle $\mathcal{C}_n$ starts at time $t = t_{n,0}$ and lasts for a period of time $\Delta t_{cycle}$, therefore ending at $t = t_{n,0}+ \Delta t_{cycle}$. $P$ producers $\{P_j\}_{j\in P}$ are selected to build the ledger state update during the ledger cycle $\mathcal{C}_n$. Each producer $P_j$ can be identified by its peers as well as the rest of the network via its unique identifier $Id_j$ (see section \ref{Sec:PIP}).\\
