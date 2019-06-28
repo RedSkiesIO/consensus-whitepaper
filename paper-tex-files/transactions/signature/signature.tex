@@ -4,7 +4,7 @@ Signatures for transactions on the Catalyst network are formed in a highly simil
 
 In blockchains such as Bitcoin and Ethereum, transaction inputs are signed using ECDSA scheme, where the public key is recovered from the signature and used to retrieve the account or UTXO address, thus ensuring that the rightful owner of the tokens is authorised to spend these. The use of a second temporary, often called ephemeral public/private key pair in the signature adds a layer of protection against malicious attempt to retrieve the private key of a user when signing multiple transactions spending tokens from the same address.\\
  
- Public key recovery is however incompatible with batch validation, \textit{i.e.} it is not possible to recover a set of public keys from an aggregated signature on multiple transaction inputs. As a result the choice of ECDSA-based scheme for Catalyst transaction would not be optimal as a transaction contain a minimum of two entries. A Schnorr-based signature scheme is preferred to enable user to jointly produce a signature using their private keys. A solution recently proposed by Y. Seurin \textit{et al}~\cite{schnorr} also accounts for protection against key-rogue attacks, preventing key malleability to create validate signatures on transaction without knowing the users' private key. We propose a Schnorr-based signature scheme inspired from this recently published work. \\
+ Public key recovery is however incompatible with batch validation, \textit{i.e.} it is not possible to recover a set of public keys from an aggregated signature on multiple transaction inputs. As a result the choice of ECDSA-based scheme for Catalyst transactions would not be optimal as a transaction contain a minimum of two entries. A Schnorr-based signature scheme is preferred to enable user to jointly produce a signature using their private keys. A solution recently proposed by Y. Seurin \textit{et al}~\cite{schnorr} also accounts for protection against key-rogue attacks, preventing key malleability to create validate signatures on transaction without knowing the users' private key. We propose a Schnorr-based signature scheme inspired from this recently published work. \\
 
 We define the transaction core message $m$ as a set of $n$ entries $\{E_i\}_{i=1,..,n}$ and additional information $X$ mentioned in the previous section (see table~\ref{tab:TrSt}), excluding the transaction timestamp:
 \begin{center}
@@ -49,7 +49,7 @@ where $Q_i = k_i\cdot G$ and verify that $R_i' = R_i$, proving the validity of t
 
 The last participant to receive the full set of partial signatures builds the transaction signature.\\
 
- The transaction signature of non-confidential transaction is composed of the pair:
+ The transaction signature of a non-confidential transaction is composed of the pair:
 \begin{equation} 
 T= (\underbrace{s_{1}+..+s_{n}}_{s}, \underbrace{R_{1}+..+R_{n}}_{R})
 \end{equation}
@@ -63,7 +63,7 @@ At the verification phase, a producer can check that the total signature is as f
 
 If so, the signature $T = (s,R)$ is valid. The signature is composed of a 32-byte integer and a 32-byte EC point, leading to a compact 64-byte signature for the entire transaction. \\
 
-The transaction signature of confidential transaction is defined differently although its structure is the same as that of non-confidential transaction . Using the public keys $\{D_i = d_iG\}_{i=1,..,n}$, it is composed of the pair:
+The transaction signature of a confidential transaction is defined differently although its structure is the same as that of non-confidential transaction . Using the public keys $\{D_i = d_iG\}_{i=1,..,n}$, it is composed of the pair:
 \begin{equation} 
 T= (\underbrace{s_{1}+..+s_{n}}_{s}, \underbrace{D_{1}+..+D_{n}}_{D})
 \end{equation}
