@@ -6,12 +6,12 @@ Nodes in the network receive and forward transactions to their peers. In order t
 \item The transaction size in bytes is less than 1 Mbyte (defined by the parameter MAX\_STD\_SIZE or MAX\_CON\_SIZE depending on the transaction type).
 \item The transaction list of entries must have at least two elements, each element must have a correct syntax. 
 
-For non-confidential transaction $E_i$ must have a total size of 48-byte and 3 components:
+For non-confidential transaction $E_i$ must have a total size of 40-byte and 2 components:
 \begin{itemize}
 \item A public key $Q_i$ with a corresponding account address $A_i$ stored on the ledger where the account have a visible balance (8-byte field).
 \item An amount $v_i^t$ that once added to the balance $v_i$ of the account mapped with the public key leaves the account balance positive ($v_i+v_i^t > 0$)
 \end{itemize}
-For confidential transaction $E_i$ must have a total size of 742-byte and 4 components:
+For confidential transaction $E_i$ must have a total size of 736-byte and 3 components:
 
 \begin{itemize}
 \item A public key $Q_i$ with a corresponding account address $A_i$ stored on the ledger where the account has an hidden balance (32-byte field).
