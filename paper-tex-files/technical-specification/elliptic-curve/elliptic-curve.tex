@@ -4,7 +4,7 @@ There exists many types of EC, some of which are part of NIST curves~\cite{Hanke
 
 On the Catalyst ledger we opt for the twisted Edwards Curve25519 \cite{ed25519}, that is a birational equivalent of the Montgomery curve Curve25519. It is defined over the prime field $\mathbb{F}_{p}$ where $p = 2^{255} - 19$, by the following equation:
 \begin{center}
--x^2+y^2=1-\frac{121665}{121666}x^2y^2
+$-x^2+y^2=1-\frac{121665}{121666}x^2y^2$
 \end{center}
 The order of Curve25519 can be expressed as $N=2^cl$ with $c$ a positive integer and $l$ a 253-bit prime number. $N$ is a 76-digit number equal to:
 \begin{center}
