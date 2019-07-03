@@ -55,7 +55,7 @@ Table~\ref{tab:TrSt} summarises the different components of a transaction and th
     \hline    
     \multicolumn{3}{| l | }{\textbf{Transaction message}} & \textbf{Size} \\ \hline \hline
      \multicolumn{3}{| l | }{Transaction Type (account type \& asset class) } & 1 Byte \\ \hline
-     \multicolumn{3}{| l | }{Timestamp} & 4 Bytes \\ \hline
+
 
        \multirow{ 4}{*}{Entries ($n>1$)} & \multirow{ 2}{*}{non-confidential entry} & 32-byte public key &  \multirow{ 2}{*}{$n \cdot 40$ Bytes} \\
      \cline{3-3}
@@ -67,9 +67,11 @@ Table~\ref{tab:TrSt} summarises the different components of a transaction and th
    	&   & 32-byte PC &\\ 
      \cline{3-3}
 	& & 672-byte range proof &\\ \hline
-   \multicolumn{3}{| l | }{Aggregated Signature} & 64 Bytes\\ \hline
+
  \multicolumn{3}{| l | }{Transaction fees} & 8 Bytes \\ \hline 
  \multicolumn{3}{| l | }{Locking Time} & 4 Bytes \\ \hline
+ \multicolumn{3}{| l | }{Aggregated Signature} & 64 Bytes\\ \hline
+ \multicolumn{3}{| l | }{Timestamp} & 4 Bytes \\ \hline
     \end{tabular} \\ 
 \caption{Structure of confidential and non-confidential transactions on Catalyst and size per transaction component.}
 \label{tab:TrSt}

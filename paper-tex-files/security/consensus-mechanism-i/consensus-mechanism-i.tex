@@ -7,7 +7,7 @@ The probability of a 51\% attack ($P_{51}$) typically depends on the algorithm u
 The probability of a successful 51\% attack on Catalyst network implies that a malicious entity (or group of entities) succeeds in controlling more than half the producer nodes selected to produce the ledger state update during a ledger cycle, giving that entity the power to tamper with the ledger state. The probability $P_{51}$ depends on the following parameters:
 \begin{itemize}
 \item $N$ : the total number of nodes in the worker pool. 
-\item $P$ : the subset of worker nodes selected to perform work for one ledger cycle ($P \leq N$).
+\item $P$ : the subset of producer nodes selected to perform work for one ledger cycle ($P \leq N$).
 \item $O$ : the number of malicious nodes in the worker pool ($0 \leq O \leq N$). This is a total subset of malicious nodes colluding to perform an attack on the network.
 \item $p$ : the number of malicious nodes in the subset $P$ of producers. ($0 \leq p \leq P$).
 \end{itemize}
@@ -46,7 +46,7 @@ When $N \gg P$ the probability of a successful attack can therefore be estimated
 
 As an example, assume a rather large number of nodes in the worker pool, $N = 20,000$, out of which $5\%$ are selected as producers for a given cycle ($P = 1,000$). \\
 
-Further assume a ratio $O/N=20\%$, \textit{e.g.} $1$ every $5$ nodes in the worker pool is controlled by a malicious entity ($O=4000$). The probability of a successful attack is calculated using the SDF of an hypergeometric distribution using these set of parameters and amounts to: $P_{51} = 1-SDF(20000,4000,1000) \approx 10^{-9}\%$. For the same set $(N,P)$, the probability of a successful attack reaches $0.04\%$ for $O/N=45\%$ of malicious nodes in the worker pool. \\
+Further assume a ratio $O/N=20\%$, \textit{e.g.} $1$ in every $5$ nodes in the worker pool is controlled by a malicious entity ($O=4000$). The probability of a successful attack is calculated using the SDF of an hypergeometric distribution using these set of parameters and amounts to: $P_{51} = 1-SDF(20000,4000,1000) \approx 10^{-9}\%$. For the same set $(N,P)$, the probability of a successful attack reaches $0.04\%$ for $O/N=45\%$ of malicious nodes in the worker pool. \\
 
 Figure \ref{fig:P} shows the probability of a successful control of more than 50\% of the producers as a function of the number of producers for four different worker pool sizes and two attack scenarios: when a malicious entity controls $O/N = 45\%$ of the worker nodes in blue, and in orange when a malicious controls $O/N = 35\%$ of the worker nodes in blue. For $N=20000$, the probability remains below $10^{-9}$ if $P < \approx 4000$ while for a smaller worker pool size ($N=5000$), the ratio $P/N$ must be at close to 50\% to prevent a successful control of more than 50\% of the producers. 
 
