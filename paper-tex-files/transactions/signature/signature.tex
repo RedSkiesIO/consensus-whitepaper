@@ -1,12 +1,12 @@
-On the Catalyst ledger, all the transaction entries are signed to authorise the transfer of tokens which means that all the participants in the transaction need to sign their respective entry for a transaction to be considered complete. When signing an entry $E_i$ a participant needs to prove ownership of the account $A_i$ referred in said transaction entry. Said otherwise, the user needs to prove knowledge of the private key $k_i$ paired the public key $Q_i$ from which the account address $A_i$ is derived. A verifier can verify the validity of the signature given the public key $Q_i$ specified in an entry $E_i$.\\
+On the Catalyst ledger, all the transaction entries are signed to authorise the transfer of tokens which means that all the participants in the transaction need to sign their respective entry for a transaction to be considered complete and ready to be broadcast on the network. When signing an entry $E_i$ a participant needs to prove ownership of the account $A_i$ referred in the entry. Said otherwise, the user needs to prove knowledge of the private key $k_i$ paired to the public key $Q_i$ from which the account address $A_i$ is derived. A verifier can then verify the validity of the signature given the public key $Q_i$ specified in an entry $E_i$.\\
 
 Signatures for transactions on the Catalyst network are formed in a highly similar way regardless of whether the asset transfer embedded in said transaction is confidential or non-confidential. The signature scheme describes in this section therefore applies to both transaction types unless explicitly stated. \\
 
-In blockchains such as Bitcoin and Ethereum, transaction inputs are signed using ECDSA scheme, where the public key is recovered from the signature and used to retrieve the account or UTXO address, thus ensuring that the rightful owner of the tokens is authorised to spend these. The use of a second temporary, often called ephemeral public/private key pair in the signature adds a layer of protection against malicious attempt to retrieve the private key of a user when signing multiple transactions spending tokens from the same address.\\
+In blockchains such as Bitcoin and Ethereum, transaction inputs are signed using ECDSA scheme, where the public key is recovered from the signature and used to retrieve the account or UTXO address, thus ensuring that the rightful owner of the tokens is authorised to spend these. The use of a second temporary, often called ephemeral, public/private key pair in the signature adds a layer of protection against malicious attempt to retrieve the private key of a user when signing multiple transactions spending tokens from the same address.\\
  
- Public key recovery is however incompatible with batch validation, \textit{i.e.} it is not possible to recover a set of public keys from an aggregated signature on multiple transaction inputs. As a result the choice of ECDSA-based scheme for Catalyst transactions would not be optimal as a transaction contain a minimum of two entries. A Schnorr-based signature scheme is preferred to enable user to jointly produce a signature using their private keys. A solution recently proposed by Y. Seurin \textit{et al}~\cite{schnorr} also accounts for protection against key-rogue attacks, preventing key malleability to create validate signatures on transaction without knowing the users' private key. We propose a Schnorr-based signature scheme inspired from this recently published work. \\
+ Public key recovery is however incompatible with batch validation, \textit{i.e.} it is not possible to recover a set of public keys from an aggregated signature on multiple transaction inputs. As a result the choice of ECDSA-based scheme for Catalyst transactions would not be optimal as a transaction should contain a minimum of two entries. A Schnorr-based signature scheme is preferred to enable user to jointly produce a signature using their private keys. A solution recently proposed by Y. Seurin \textit{et al}~\cite{schnorr} also accounts for protection against key-rogue attacks, preventing key malleability to create validate signatures on transaction without knowing the users' private key. We propose a Schnorr-based signature scheme inspired from this recently published work. \\
 
-We define the transaction core message $m$ as a set of $n$ entries $\{E_i\}_{i=1,..,n}$ and additional information $X$ mentioned in the previous section (see table~\ref{tab:TrSt}), excluding the transaction timestamp:
+We define the transaction core message $m$ as a set of $n$ entries $\{E_i\}_{i=1,..,n}$ and additional information $X$ mentioned in the previous section (see table~\ref{tab:TrSt}), excluding the transaction timestamp and signature:
 \begin{center}
 $m = \{E_i\}_{i=1,..,n} + X$ 
 \end{center}
@@ -37,7 +37,7 @@ s_{i} = r_i + e_i\cdot k_i
 
 Where $r_i$ is a pseudo-random number chosen by $U_i$ and kept secret.\\
 
- Recall that each entry $E_i$ in a confidential transaction includes a PC obfuscating the amount $v_i^{t}$ defined by: $C_i^{t} = v_i ^{t} H + b_i^{t} G$. For confidential transaction we define $r_i = b_i^t + d_i$ where $d_i$ is a pseudo-random number chosen by $U_i$ and kept secret.\\
+ Recall that each entry $E_i$ in a confidential transaction includes a PC obfuscating the amount $v_i^{t}$ defined by: $C_i^{t} = v_i ^{t} H + b_i^{t} G$. For confidential transactions we define $r_i = b_i^t + d_i$ where $d_i$ is a pseudo-random number chosen by $U_i$ and kept secret.\\
 
 The partial signature ($s_i$, $R_i$) with $R_i = r_iG$ is forwarded to the other transaction participants. Each participant in the transaction $U_k$ ($k\neq i$) can compute:
 
@@ -61,9 +61,9 @@ At the verification phase, a producer can check that the total signature is as f
 \item Verify that $R'=R$
 \end{enumerate}
 
-If so, the signature $T = (s,R)$ is valid. The signature is composed of a 32-byte integer and a 32-byte EC point, leading to a compact 64-byte signature for the entire transaction. \\
+If so, the signature $T = (s,R)$ is valid. The signature is composed of a 32-byte integer and a 32-byte EC point, leading to a compact 64-byte signature for the entire transaction, regardless of the number of transaction entries. \\
 
-The transaction signature of a confidential transaction is defined differently although its structure is the same as that of non-confidential transaction . Using the public keys $\{D_i = d_iG\}_{i=1,..,n}$, it is composed of the pair:
+The transaction signature of a confidential transaction is defined differently although its structure is the same as that of non-confidential transactions. Using the public keys $\{D_i = d_iG\}_{i=1,..,n}$, it is composed of the pair:
 \begin{equation} 
 T= (\underbrace{s_{1}+..+s_{n}}_{s}, \underbrace{D_{1}+..+D_{n}}_{D})
 \end{equation}
@@ -75,4 +75,4 @@ $R' = \sum_{i=1}^{n}C_i^t + v^fH + D$
 
 If $R' = s \cdot G - \sum_{i=1}^{n}e_i'Q_i$, the signature $T = (s,D)$ is valid. The validity of $T$ proves a verifier that the sum of the commitments in the transaction entries results in a commitment to 0 after adding the transaction fees paid by the different participant, thus ensuring that no tokens are created or lost in the transaction. \\
 
-Once the transaction signature is valid, the participant can append it to the transaction. The transaction timestamp is defined as the time when the transaction is completed by said participant and ready for broadcast across the network. 
+Once the transaction aggregated signature is valid, the participant in possession of all partial signatures can append it to the transaction. The transaction timestamp is defined as the time when the transaction is completed by said participant and ready for broadcast across the network. 
