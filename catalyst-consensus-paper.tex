@@ -9,6 +9,8 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{titlesec}	
+\usepackage{scrextend}
+\usepackage{titlepic}
 \usepackage{float}
 \usepackage{wrapfig}
 \usepackage{lscape}
@@ -28,12 +30,13 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
-\lfoot{@Atlas City Global Limited}
-\rfoot{Private \& Confidential}
+
+\lfoot{\textcopyright Atlas City Global Limited}
+%\rfoot{Private \& Confidential}
 
 \fancypagestyle{plain}{%
-\fancyfoot[LO, RE]{@Atlas City Global Limited}
-\fancyfoot[LE, RO]{Private \& Confidential}}
+\fancyfoot[LO, RE]{\textcopyright Atlas City Global Limited}}
+%\fancyfoot[LE, RO]{Private \& Confidential}}
 \fancyhead{}
 \renewcommand{\footrulewidth}{0.4pt}
 \renewcommand{\headrulewidth}{0pt} 
@@ -41,20 +44,66 @@
 \usepackage[spanish,english]{babel}
 \usepackage[autostyle]{csquotes}
 \usepackage[backend=biber, sorting=none]{biblatex}
-\bibliography{catalyst-technical-paper}
+\bibliography{catalyst-consensus-paper}
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+\setcounter{biburllcpenalty}{9000}
+
+
+\definecolor{catalystDarkBlue}{RGB}{22,68,91}
+\definecolor{catalystLightBlue}{RGB}{22,172,159}
+
+
+\hypersetup{
+  urlcolor   = catalystLightBlue ,
+  citecolor = catalystLightBlue ,
+  linkcolor = catalystDarkBlue
+}
+
+
+
+
 
 \begin{document}
 
-\parindent=0in
+\begin{titlepage}
 
-\title{Catalyst Distributed Operating System Protocol}
-\author{Dr. Pauline Bernat, Joseph Kearney and Francesca Sage-Ling}
-\maketitle 
+\par
+\raisebox{-.5\height}{\includegraphics[width=7.5cm]{figures/atlas-logo}}%
+\hfill
+\raisebox{-.67\height}{\includegraphics[width=9.4cm]{figures/catalyst-logo}}%
+\par
 
+\begin{center}
+\vspace*{4cm}
+\LARGE
+\textbf{Catalyst Network Research:\\
+a new Consensus Protocol}
+%\vspace{0.5cm}
+
+\large
+\vspace{1.5cm}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+Authors: Dr. Pauline Bernat\footnote{pauline.bernat@atlascity.io}, Joseph Kearney\footnote{joseph.kearney@atlascity.io} and Francesca Sage-Ling\footnote{fran.sl@atlascity.io}\\
+\small
+\vspace{.5cm}
+\textit{with the contribution of Atlas City's engineer team led by James Kirby\footnote{james.kirby@atlascity.io}}\\
+%\textit{with the contribution of Francesca Sage-Ling\footnote{fran.sl@atlascity.io}}\\
+\vspace{1.5cm}
+Version 1.0
+ \\
+\vspace{0.5cm}
+\textit{Last edited: \today}
+\end{center}
+\end{titlepage}
 %\begin{abstract}
 %\input{paper-tex-files/abstract/abstract}
 %\end{abstract}
 %\newpage
+
+
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
 
 \chapter*{Abstract}
 \input{paper-tex-files/abstract/abstract}
@@ -96,7 +145,7 @@
 
 \input{paper-tex-files/technical-specification/zk-proofs/zk-proofs}
 
-\section{Tokens name and units}\label{Sec:Tok}
+\section{Catalyst Tokens}\label{Sec:Tok}
 
 \input{paper-tex-files/technical-specification/tokens/tokens}
 
@@ -105,9 +154,11 @@
 %Network Access Chapter
 
 
-\chapter{Peer-to-peer Catalyst Network} \label{Cha:NAPI}
+\chapter{Peer-to-Peer Catalyst Network} \label{Cha:NAPI}
 
 \input{paper-tex-files/catalyst-network/catalyst-network}
+
+\begin{comment}
 
 \section{Peer Identification Protocol}\label{Sec:PIP}
 
@@ -120,22 +171,25 @@
 \section{Gossip Protocol}
 
 \input{paper-tex-files/catalyst-network/gossip-protocol/gossip-protocol}
+\end{comment}
 
 \section{Peer Role Types}\label{Sec:PRT}
 \input{paper-tex-files/catalyst-network/node-roles/node-roles}
 
+\begin{comment}
 \subsection{Proof of Computing Capabilities}\label{Sec:Pcc}
 
 \input{paper-tex-files/catalyst-network/proof-computing-capabilities/proof-computing-capabilities}
+\end{comment}
 
-\subsection{Nodes Registration}\label{Sec:Reg}
+
+\section{Nodes Registration}\label{Sec:Reg}
 
 \input{paper-tex-files/catalyst-network/node-role-assignment/node-role-assignment}
 
 %\subsection{Worker Pass Validity}\label{Sec:PassVal}
 
 %\input{paper-tex-files/catalyst-network/worker-pass/worker-pass}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -154,10 +208,10 @@
 \section{CLS Structure}\label{SecLCS}
 
 \input{paper-tex-files/catalyst-distributed-ledger/ledger-current-state/ledger-current-state}
+	
+%\section{Distributed File System}\label{SecDFS}
 
-\section{Distributed File System}\label{SecDFS}
-
-\input{paper-tex-files/catalyst-distributed-ledger/ledger-dfs/ledger-dfs}
+%\input{paper-tex-files/catalyst-distributed-ledger/ledger-dfs/ledger-dfs}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -207,7 +261,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\chapter{Catalyst at Large Scale} \label{Cha:Sha}
+%\chapter{Scaling Catalyst} \label{Cha:Sha}
 
 %\input{paper-tex-files/sharding/sharding}
 
@@ -246,6 +300,9 @@
 \input{paper-tex-files/conclusion/conclusion}
 
 
+\begin{raggedright}
+\normalem
 \printbibliography
-\nocite{*}
+
+\end{raggedright}
 \end{document}

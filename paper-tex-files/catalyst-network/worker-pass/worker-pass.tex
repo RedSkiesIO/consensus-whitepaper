@@ -6,7 +6,7 @@ $\lambda_i$ acts as a decay rate and is used to compute the probability that a n
 \begin{equation}
 P_{leave,i}(t) = 1 - e^{-\lambda_i(t-t_{i,0})}
 \end{equation}
-The decay rate is defined by  $\lambda_i = ln(2)/\Delta t_{i,1/2}$ where $\Delta t_{i,1/2}$ corresponds to the node mean lifetime, that is the period of time after which the node $W_i$ has a 50\% probability of remaining in the worker pool. The probability $P_{leave,i}(t)$ verifies that:
+The decay rate is defined by $\lambda_i = ln(2)/\Delta t_{i,1/2}$ where $\Delta t_{i,1/2}$ corresponds to the node mean lifetime, that is the period of time after which the node $W_i$ has a 50\% probability of remaining in the worker pool. The probability $P_{leave,i}(t)$ verifies that:
 \begin{flushleft}
 \hspace{6cm}$P_{leave,i}(t = t_{i,0}) = 0$\\
 \hspace{6cm}$P_{leave,i}(t = t_{i,0} + \Delta t_{i,1/2}) = 0.5$\\

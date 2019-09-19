@@ -3,13 +3,13 @@ In traditional blockchains (such as Bitcoin) a transaction is composed of a set 
 A transaction object on Catalyst is made of the following components:
 
 \begin{itemize}
-\item A transaction type specifying the type of exchange embedded in the transaction entries (non-confidential or confidential asset transfer, data storage request and retrieve, smart contracts-related token and/or data transfer).      
-\item A timestamp corresponding to the point in time the transaction is complete and ready to be broadcast on the network.
+\item A transaction type specifying the type of exchange embedded in the transaction entries (non-confidential or confidential asset transfer, data storage request and retrieve, smart contracts-related token and/or data transfer).
 \item A set of $n$ transaction entries $\{E_i\}_{i=1,..,n}$. Transaction entries are specific to the nature of the token and data exchange. These are described in \ref{Sec:TEnt}.
 \item An aggregated signature $T$ proving ownership of the set of accounts called in the transaction entries.
 \item A locking time corresponding to a point in time after which the transaction can be processed by a worker pool.
 \item The transaction fees paid by the transaction participants
+\item A timestamp corresponding to the point in time where the transaction is complete and ready to be broadcast on the network.
 \item A data field that can contain up to 60 bytes of data transferred in data storage or smart contract-related transactions. 
 \end{itemize}
 
-Any valid transaction must contain a type, a timestamp and locking time (the later is set to 0 is there is no waiting period prior to processing a token exchange embedded in the transaction), a list of transaction entries and an associated signature. Any other field can be included to the transaction, depending on the nature of the token exchange. 
+Any valid transaction must contain a type, a timestamp and locking time (when the later is set to 0 there is no waiting period prior to processing a token exchange embedded in the transaction), a list of transaction entries and an associated signature. Any other field can be included to the transaction, depending on the nature of the token exchange. 
