@@ -13,7 +13,7 @@ $m = \{E_i\}_{i=1,..,n} + X$
 
 The participant $U_i$ responsible for $E_i$ (holder of the account $A_i$) creates the following challenge:
 \begin{equation} 
-e_i = \mathcal{H}(m \mid\mid \tilde{Q})\mathcal{H}(L \mid Q_i)
+e_i = \mathcal{H}(m \mid\mid \tilde{Q})\mathcal{H}(L \mid\mid Q_i)
 \end{equation} 
 
 Where:
@@ -56,23 +56,23 @@ T= (\underbrace{s_{1}+..+s_{n}}_{s}, \underbrace{R_{1}+..+R_{n}}_{R})
 
 At the verification phase, a producer can check that the total signature is as follows:
 \begin{enumerate}
-\item Compute the list of $n$ challenges $\{e_i'\}_{i=1,..,n}$ given the public keys embedded in the transaction entries $\{E_i\}_{i=1,..,n}$ included in $m$
-\item Compute the quantity $R' = s \cdot G - \sum_{i=1}^{n}e_i'Q_i$
+%\item Compute the list of $n$ challenges $\{e_i'\}_{i=1,..,n}$ given the public keys embedded in the transaction entries $\{E_i\}_{i=1,..,n}$ included in $m$
+\item Compute the quantity $R' = s \cdot G - \mathcal{H}(m \mid\mid \tilde{Q})\cdot \tilde{Q}$ \footnote{Indeed, $\sum_{i=1}^{n}e_i'Q_i =  \sum_{i=1}^{n} \mathcal{H}(m \mid\mid \tilde{Q})\mathcal{H}(L \mid\mid Q_i) \cdot Q_i = \mathcal{H}(m \mid\mid \tilde{Q})  \sum_{i=1}^{n}\mathcal{H}(L \mid\mid Q_i)  \cdot Q_i = \mathcal{H}(L \mid\mid \tilde{Q})\cdot \tilde{Q}$.}
 \item Verify that $R'=R$
 \end{enumerate}
 
 If so, the signature $T = (s,R)$ is valid. The signature is composed of a 32-byte integer and a 32-byte EC point, leading to a compact 64-byte signature for the entire transaction, regardless of the number of transaction entries. \\
 
-The transaction signature of a confidential transaction is defined differently although its structure is the same as that of non-confidential transactions. Using the public keys $\{D_i = d_iG\}_{i=1,..,n}$, it is composed of the pair:
+Using the public keys $\{R_i = r_iG\}_{i=1,..,n}$, the transaction signature of a confidential transaction is composed of the pair:
 \begin{equation} 
-T= (\underbrace{s_{1}+..+s_{n}}_{s}, \underbrace{D_{1}+..+D_{n}}_{D})
+T= (\underbrace{s_{1}+..+s_{n}}_{s}, \underbrace{R_{1}+..+R_{n}}_{R})
 \end{equation}
 
 The verifier can compute:
 \begin{center}
-$R' = \sum_{i=1}^{n}C_i^t + v^fH + D$
+$R' = \sum_{i=1}^{n}C_i^t + v^fH$
 \end{center}
 
-If $R' = s \cdot G - \sum_{i=1}^{n}e_i'Q_i$, the signature $T = (s,D)$ is valid. The validity of $T$ proves a verifier that the sum of the commitments in the transaction entries results in a commitment to 0 after adding the transaction fees paid by the different participant, thus ensuring that no tokens are created or lost in the transaction. \\
+If $R' = s \cdot G - \mathcal{H}(m \mid\mid \tilde{Q})\cdot \tilde{Q}$ , the signature $T = (s,R)$ is valid. The validity of $T$ proves a verifier that the sum of the commitments in the transaction entries results in a commitment to 0 after adding the transaction fees paid by the different participant, thus ensuring that no tokens are created or lost in the transaction. \\
 
 Once the transaction aggregated signature is valid, the participant in possession of all partial signatures can append it to the transaction. The transaction timestamp is defined as the time when the transaction is completed by said participant and ready for broadcast across the network. 
